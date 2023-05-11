@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_framelayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="마이페이지"
+        android:textSize="25dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:text=""
+        android:textSize="30sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_modify"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="100dp"
+        android:background="#00FF0000"
+        android:drawableBottom="@drawable/ic_create" />
+
+
+    <TextView
+        android:id="@+id/text_writing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="내가 쓴 글"
+        android:textSize="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="200dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_mypage_recyclerview"/>
+    </ScrollView>
+
+</FrameLayout>

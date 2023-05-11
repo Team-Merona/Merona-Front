@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "238088629991",
+    "project_id": "merona-57cb3",
+    "storage_bucket": "merona-57cb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238088629991:android:f98e24f51392bea354fc42",
+        "android_client_info": {
+          "package_name": "com.example.merona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238088629991-entdh1c7i4rdfp2cvp133uaa7rdbh0lv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBONvatMTUVyxBwUzMm_qvkhsTbsuX9Y1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238088629991-entdh1c7i4rdfp2cvp133uaa7rdbh0lv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
