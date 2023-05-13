@@ -12,11 +12,15 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.check_dialog.*
 import org.json.JSONArray
 import org.json.JSONObject
-
 
 class RegisterActivity : AppCompatActivity() {
     val registerUrl = "http://10.0.2.2:8080/user/signup"
