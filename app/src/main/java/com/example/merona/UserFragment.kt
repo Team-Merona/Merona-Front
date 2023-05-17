@@ -71,7 +71,7 @@ class UserFragment : Fragment() {
 
         Log.d("email 저장",MyApplication.prefs.getString("email","") )
         val userEmail : TextView = view.findViewById(R.id.userEmail)
-        userEmail.text = MyApplication.prefs.getString("email","")
+        userEmail.text = MyApplication.prefs.getString("email","")+" 님"
 
         val rvBoard = view.findViewById<RecyclerView>(R.id.rv_user_board)
         val itemList = ArrayList<UserBoardItem>()
@@ -156,7 +156,7 @@ class UserFragment : Fragment() {
             Log.d("profileReceiver", "Intent: $intent")
             Log.d("email 저장",MyApplication.prefs.getString("email","") )
             val userEmail : TextView = view!!.findViewById(R.id.userEmail)
-            userEmail.text = MyApplication.prefs.getString("email","")
+            userEmail.text = MyApplication.prefs.getString("email","")+" 님"
         }
     }
 

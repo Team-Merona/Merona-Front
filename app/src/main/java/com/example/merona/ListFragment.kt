@@ -60,10 +60,11 @@ class ListFragment : Fragment() {
                     val jsonObject = jsonArray.getJSONObject(i)
 
                     val title = jsonObject.getString("title")
-                    val address = jsonObject.getString("address")
-//                    val cost = jsonObject.getString("cost")
+//                    val address = jsonObject.getString("address")
+//                    val jsonArray = address.
+                    val cost = jsonObject.getInt("cost")
 
-                    itemList.add(BoardItem(title,address,"1000"+"원"))
+                    itemList.add(BoardItem(title,"address",cost.toString()+"원"))
                 }
 
                 Log.d("저장!", itemList.toString())

@@ -6,36 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".ModifyActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/back_user"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?android:attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/modify_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <LinearLayout
         android:id="@+id/modify_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/back_user"
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:minHeight="?android:attr/actionBarSize"
-            android:theme="?android:attr/actionBarTheme"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/backBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="back"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/text_modify"
             android:layout_width="84dp"
             android:layout_height="31dp"
             android:layout_marginTop="8dp"
+            android:layout_gravity="center"
             android:text="수정하기"
-            android:gravity="center_horizontal"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,21 +52,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.011" />
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/ModifyButton"
-            android:layout_width="330dp"
-            android:layout_height="54dp"
-            android:background="@drawable/rectangle_button_79d4682"
-            android:hint="수정완료"
-            android:textColorHint="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.927" />
 
         <ScrollView
             android:layout_width="414dp"
@@ -228,6 +220,22 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ModifyButton"
+            android:layout_width="330dp"
+            android:layout_height="54dp"
+            android:background="@drawable/rectangle_button_79d4682"
+            android:hint="수정완료"
+            android:textColorHint="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.927" />
 
     </LinearLayout>
 

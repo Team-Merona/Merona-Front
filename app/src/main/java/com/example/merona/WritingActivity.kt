@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.SeekBar
 import androidx.appcompat.widget.Toolbar
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -50,7 +51,7 @@ class WritingActivity : AppCompatActivity() {
                     val json = JSONObject()
                     json.put("title", ""+inputTitle.text.toString())
                     json.put("contents", ""+inputContents.text.toString())
-                    json.put("streetAddress",""+address.text.toString())
+                    json.put("streetAddress",""+inputAddress.text.toString())
                     return json.toString().toByteArray()
                 }
 
@@ -68,6 +69,19 @@ class WritingActivity : AppCompatActivity() {
             val queue = Volley.newRequestQueue(this)
             queue.add(stringRequest)
         }
+
+        // 시크바
+        seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                tv_price.text = p1.toString()+"원"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
 
     }
 }

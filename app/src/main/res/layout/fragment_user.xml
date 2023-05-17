@@ -44,6 +44,15 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="200dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@drawable/rectangle_button_79d468"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
