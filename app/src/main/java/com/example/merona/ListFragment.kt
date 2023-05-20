@@ -1,5 +1,6 @@
 package com.example.merona
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +32,7 @@ class ListFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +45,13 @@ class ListFragment : Fragment() {
 
         val rvBoard = view.findViewById<RecyclerView>(R.id.rv_board)
         val itemList = ArrayList<BoardItem>()
+
+        //아이템 클릭시 상세 페이지로 화면 이동
+        val item_layout = view.findViewById<LinearLayout>(R.id.board_layout)
+        item_layout.setOnClickListener {
+            val intent = Intent(getActivity(), DetailActivity::class.java)
+            startActivity(intent)
+        }
 
         val boardAdapter = BoardAdapter(itemList)
         boardAdapter.notifyDataSetChanged()

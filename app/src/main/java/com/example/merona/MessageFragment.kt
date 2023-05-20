@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatButton
 import kotlinx.android.synthetic.main.fragment_message.*
 
 private const val ARG_PARAM1 = "param1"
@@ -33,8 +34,11 @@ class MessageFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_message, container, false)
 
         //채팅하기 버튼 클릭 시 채팅하기 화면으로
-        chat_btn.setOnClickListener {
+        val chatBtn : AppCompatButton = view.findViewById(R.id.chat_btn)
+        chatBtn.setOnClickListener {
             val intent = Intent(getActivity(), ChatActivity::class.java)
+            //destinationUid에 게시글 작성자의 uid를 전달.
+            intent.putExtra("destinationUid", "a")
             startActivity(intent)
         }
 

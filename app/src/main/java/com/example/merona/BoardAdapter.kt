@@ -1,10 +1,13 @@
 package com.example.merona
 
+import android.content.Intent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class BoardAdapter(val itemList: ArrayList<BoardItem>) :
@@ -18,7 +21,6 @@ class BoardAdapter(val itemList: ArrayList<BoardItem>) :
         holder.tv_title.text = itemList[position].title
         holder.tv_address.text = itemList[position].address
         holder.tv_cost.text= itemList[position].cost
-
     }
 
     override fun getItemCount():Int{
