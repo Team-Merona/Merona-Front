@@ -30,12 +30,13 @@ class DetailActivity : AppCompatActivity() {
                 val title = jsonObj.getString("title")
                 val contents = jsonObj.getString("contents")
                 val address = jsonObj.getString("address")
-//                    val cost = jsonObject.getString("cost")
+                val cost = jsonObj.getString("cost")
                 val email = jsonObj.getString("email")
 
                 tvName.text = email
                 tvTitle.text = title
                 tvContents.text = contents
+                tvCost.text = cost.toString()+"원"
             },
             {
                 Log.d("에러!","x..")
