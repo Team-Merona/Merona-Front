@@ -1,3 +1,3 @@
 package com.example.merona
 
-data class UserBoardItem(val title:String, val state:String)
+data class UserBoardItem(val id:Long, val title:String, val state:String)

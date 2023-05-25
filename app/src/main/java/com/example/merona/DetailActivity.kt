@@ -31,12 +31,24 @@ class DetailActivity : AppCompatActivity() {
                 val contents = jsonObj.getString("contents")
                 val address = jsonObj.getString("address")
                 val cost = jsonObj.getString("cost")
+                var state = jsonObj.getString("state")
                 val email = jsonObj.getString("email")
 
-                tvName.text = email
+                tvName.text = email+"님"
                 tvTitle.text = title
                 tvContents.text = contents
                 tvCost.text = cost.toString()+"원"
+                if (state=="REQUEST_WAITING"){
+                    state = "요청 대기중"
+                }
+                else if(state =="REQUEST_ON_GOING"){
+                    state = "요청 진행중"
+                }
+                else{
+                    state="요청 완료"
+                    requestBtn.setBackgroundResource(R.drawable.solid_button_gray)
+                }
+                requestBtn.text = state
             },
             {
                 Log.d("에러!","x..")
