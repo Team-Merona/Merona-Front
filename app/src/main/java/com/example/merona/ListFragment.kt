@@ -46,13 +46,6 @@ class ListFragment : Fragment() {
         val rvBoard = view.findViewById<RecyclerView>(R.id.rv_board)
         val itemList = ArrayList<BoardItem>()
 
-        //아이템 클릭시 상세 페이지로 화면 이동
-        val item_layout = view.findViewById<LinearLayout>(R.id.board_layout)
-        item_layout.setOnClickListener {
-            val intent = Intent(getActivity(), DetailActivity::class.java)
-            startActivity(intent)
-        }
-
         val boardAdapter = BoardAdapter(itemList)
         boardAdapter.notifyDataSetChanged()
 
@@ -69,11 +62,13 @@ class ListFragment : Fragment() {
                 for (i in 0..jsonArray.length()-1){
                     val jsonObject = jsonArray.getJSONObject(i)
 
+                    val id = jsonObject.getLong("id")
                     val title = jsonObject.getString("title")
-                    val address = jsonObject.getString("address")
-//                    val cost = jsonObject.getString("cost")
+//                    val address = jsonObject.getString("address")
+//                    val jsonArray = address.
+//                    val cost = jsonObject.getInt("cost")
 
-                    itemList.add(BoardItem(title,address,"1000"+"원"))
+                    itemList.add(BoardItem(id,title,"address","1000원"))
                 }
 
                 Log.d("저장!", itemList.toString())
@@ -136,11 +131,12 @@ class ListFragment : Fragment() {
                     for (i in 0..jsonArray.length()-1){
                         val jsonObject = jsonArray.getJSONObject(i)
 
+                        val id = jsonObject.getLong("id")
                         val title = jsonObject.getString("title")
                         val address = jsonObject.getString("address")
 //                    val cost = jsonObject.getString("cost")
 
-                        itemList.add(BoardItem(title,address,"1000"+"원"))
+                        itemList.add(BoardItem(id, title,address,"1000"+"원"))
                     }
 
                     Log.d("저장!", itemList.toString())

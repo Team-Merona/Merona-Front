@@ -1,5 +1,6 @@
 package com.example.merona
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,6 +22,12 @@ class BoardAdapter(val itemList: ArrayList<BoardItem>) :
         holder.tv_title.text = itemList[position].title
         holder.tv_address.text = itemList[position].address
         holder.tv_cost.text= itemList[position].cost
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(it.context, DetailActivity::class.java)
+            intent.putExtra("id", itemList[position].id)
+            it.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount():Int{
@@ -31,5 +38,6 @@ class BoardAdapter(val itemList: ArrayList<BoardItem>) :
         val tv_title = itemView.findViewById<TextView>(R.id.tv_title)
         val tv_address = itemView.findViewById<TextView>(R.id.tv_address)
         val tv_cost = itemView.findViewById<TextView>(R.id.tv_cost)
+
     }
 }

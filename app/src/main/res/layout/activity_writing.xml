@@ -49,6 +49,7 @@
         android:layout_width="330dp"
         android:layout_height="43dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
         android:hint="입력하세요"
@@ -60,16 +61,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/addPwd2"
+        android:id="@+id/inputAddress"
         android:layout_width="330dp"
         android:layout_height="43dp"
         android:layout_marginStart="30dp"
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
         android:hint="입력하세요"
         android:inputType="text"
         android:paddingLeft="20dp"
@@ -79,14 +81,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputContents"
         android:layout_width="330dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
         android:hint="입력하세요"
@@ -98,8 +101,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/address"
@@ -108,7 +111,7 @@
         android:text="주소"
         android:textSize="25sp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="190dp"
         tools:layout_editor_absoluteX="87dp"
         tools:layout_editor_absoluteY="230dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -123,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="300dp"
         android:text="내용"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -138,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="470dp"
         android:text="심부름비"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,15 +168,34 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="29dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginTop="11dp"
         android:progressDrawable="@drawable/seekbar"
         android:thumb="@drawable/seekbar_thumb"
+        android:max="5000"
+        android:min="1000"
+        android:progress="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintVertical_bias="0.0"
+        />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="1000원"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
