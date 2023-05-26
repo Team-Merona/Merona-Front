@@ -11,10 +11,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="마이페이지"
-        android:textSize="25dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+        android:text="마이페이지"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/userEmail"
@@ -29,7 +29,7 @@
         android:id="@+id/btn_modify"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="290dp"
+        android:layout_marginLeft="320dp"
         android:layout_marginTop="100dp"
         android:background="#00FF0000"
         android:drawableBottom="@drawable/ic_create" />

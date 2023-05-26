@@ -42,7 +42,7 @@ class UserFragment : Fragment() {
     private var param2: String? = null
 
     private var boardUrl = "http://10.0.2.2:8080/user/list"
-    private var stateUrl = "http://10.0.2.2:8080/board/list/{id}/completed"
+    private var stateUrl = "http://10.0.2.2:8080/board/list/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +91,7 @@ class UserFragment : Fragment() {
                 val jsonArray = JSONArray(strResp)
                 for (i in 0..jsonArray.length()-1){
                     val jsonObject = jsonArray.getJSONObject(i)
-
+                    val id = jsonObject.getLong("id")
                     val title = jsonObject.getString("title")
 
                     var state = jsonObject.getString("state")
@@ -105,7 +105,7 @@ class UserFragment : Fragment() {
                         state="완료"
                     }
 
-                    itemList.add(UserBoardItem(title,state))
+                    itemList.add(UserBoardItem(id,title,state))
                 }
 
                 Log.d("저장!", itemList.toString())
@@ -144,11 +144,15 @@ class UserFragment : Fragment() {
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
             boardReceiver , IntentFilter("userBoard")
         )
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+            stateReceiver , IntentFilter("stateChange")
+        )
     }
 
     fun unRegister() {
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(profileReceiver)
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(boardReceiver)
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(stateReceiver)
     }
 
     private val profileReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -181,7 +185,7 @@ class UserFragment : Fragment() {
                     val jsonArray = JSONArray(strResp)
                     for (i in 0..jsonArray.length()-1){
                         val jsonObject = jsonArray.getJSONObject(i)
-
+                        val id = jsonObject.getLong("id")
                         val title = jsonObject.getString("title")
 
                         var state = jsonObject.getString("state")
@@ -195,12 +199,58 @@ class UserFragment : Fragment() {
                             state="완료"
                         }
 
-                        itemList.add(UserBoardItem(title,state))
+                        itemList.add(UserBoardItem(id,title,state))
                     }
 
                     Log.d("저장!", itemList.toString())
                     boardAdapter.notifyDataSetChanged()
 
+                },
+                {
+                    Log.d("에러!","x..")
+                }
+
+            ){
+                override fun getParams():MutableMap<String,String>{
+                    val params=HashMap<String,String>()
+                    return params
+                }
+
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headerMap: MutableMap<String, String> = HashMap()
+                    headerMap["Content-Type"] = "application/json"
+                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    return headerMap
+                }
+            }
+
+            val queue = Volley.newRequestQueue(context)
+            queue.add(request)
+        }
+    }
+
+    private val stateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            Log.d("stateReceiver", "Intent: $intent")
+            val boardId = intent.getLongExtra("id",0)
+
+            val rvBoard = view!!.findViewById<RecyclerView>(R.id.rv_user_board)
+            val itemList = ArrayList<UserBoardItem>()
+
+            val boardAdapter = UserBoardAdapter(itemList)
+            boardAdapter.notifyDataSetChanged()
+
+            rvBoard.adapter = boardAdapter
+            rvBoard.layoutManager=LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+            val request=object: StringRequest(
+                Request.Method.PATCH,
+                "$stateUrl$boardId/completed",
+                Response.Listener<String>{ response ->
+                    Log.d("응답!",response)
+                    val broadcaster = LocalBroadcastManager.getInstance(context)
+                    val intent2 = Intent("userBoard")
+                    broadcaster.sendBroadcast(intent2)
                 },
                 {
                     Log.d("에러!","x..")

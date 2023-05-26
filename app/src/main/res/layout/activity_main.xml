@@ -34,7 +34,7 @@
             android:textSize="17sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="540dp"
             android:background="@drawable/rectangle_button_79d4682" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

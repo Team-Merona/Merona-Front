@@ -52,6 +52,7 @@ class WritingActivity : AppCompatActivity() {
                     json.put("title", ""+inputTitle.text.toString())
                     json.put("contents", ""+inputContents.text.toString())
                     json.put("streetAddress",""+inputAddress.text.toString())
+                    json.put("cost", tv_price.text.toString().toInt())
                     return json.toString().toByteArray()
                 }
 
@@ -73,7 +74,7 @@ class WritingActivity : AppCompatActivity() {
         // 시크바
         seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                tv_price.text = p1.toString()+"원"
+                tv_price.text = (p1*100).toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
