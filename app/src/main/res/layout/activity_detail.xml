@@ -165,6 +165,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/chat_btn"
         android:layout_width="300dp"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"

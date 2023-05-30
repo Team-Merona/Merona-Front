@@ -48,14 +48,14 @@ class ChatActivity : AppCompatActivity() {
         val dataFormat = SimpleDateFormat("MM월dd일 hh:mm")
         val curTime = dataFormat.format(Date(time)).toString()
 
-        destinationUid = intent.getStringExtra("destinationUid")
+        destinationUid = intent.getStringExtra("destinationUId")
         //uid = 본인 uid
         //uid = Firebase.auth.currentUser?.uid.toString()
         uid = MyApplication.prefs.getString("email", "")
 
         //send 이미지 클릭 시 메세지 보내기
         imageView.setOnClickListener{
-            Log.d("클릭 시 dest","$destinationUid")
+            Log.d("destinationUId","$destinationUid")
             Log.d("uid", "$uid")
 
             val chatModel = ChatModel()
