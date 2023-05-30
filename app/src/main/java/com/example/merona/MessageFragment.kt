@@ -33,15 +33,6 @@ class MessageFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_message, container, false)
 
-        //채팅하기 버튼 클릭 시 채팅하기 화면으로
-        val chatBtn : AppCompatButton = view.findViewById(R.id.chat_btn)
-        chatBtn.setOnClickListener {
-            val intent = Intent(getActivity(), ChatActivity::class.java)
-            //destinationUid에 게시글 작성자의 uid를 전달.
-            intent.putExtra("destinationUid", "a")
-            startActivity(intent)
-        }
-
         return view
     }
 

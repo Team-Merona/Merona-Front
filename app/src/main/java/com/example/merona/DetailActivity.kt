@@ -1,8 +1,10 @@
 package com.example.merona
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -13,7 +15,7 @@ import org.json.JSONObject
 
 class DetailActivity : AppCompatActivity() {
     val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
-
+    var email : String? = null //게시글 작성자의 ID
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -32,7 +34,7 @@ class DetailActivity : AppCompatActivity() {
                 val address = jsonObj.getString("address")
                 val cost = jsonObj.getString("cost")
                 var state = jsonObj.getString("state")
-                val email = jsonObj.getString("email")
+                email = jsonObj.getString("email")
 
                 tvName.text = email+"님"
                 tvTitle.text = title
@@ -70,6 +72,16 @@ class DetailActivity : AppCompatActivity() {
 
         val queue = Volley.newRequestQueue(this)
         queue.add(request)
+
+        //채팅하기 버튼 클릭 시 채팅
+        val chatBtn : AppCompatButton = findViewById(R.id.chat_btn)
+        chatBtn.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            //destinationUId에 게시글 작성자의 ID를 넣음
+            intent.putExtra("destinationUId", email)
+            startActivity(intent)
+        }
+
     }
 
 }
