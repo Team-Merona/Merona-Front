@@ -35,7 +35,7 @@ class ChatActivity : AppCompatActivity() {
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
 
-    @SuppressLint("SimpleDateFormat", "MissingInflatedId")
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -52,6 +52,8 @@ class ChatActivity : AppCompatActivity() {
         //uid = 본인 uid
         //uid = Firebase.auth.currentUser?.uid.toString()
         uid = MyApplication.prefs.getString("email", "")
+        recyclerView = findViewById(R.id.messageActivity_recyclerview)
+
 
         //send 이미지 클릭 시 메세지 보내기
         imageView.setOnClickListener{
@@ -76,22 +78,26 @@ class ChatActivity : AppCompatActivity() {
                     }, 1000L)
                     Log.d("chatUidNull dest", "$destinationUid")
                 }
+
             } else {
                 fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
                 messageActivity_editText.text = null
                 Log.d("chatUidNotMull dest", "$destinationUid")
             }
         }
-    checkChatRoom()
+        checkChatRoom()
+
     }
 
     private fun checkChatRoom() {
         //실시간으로 앱 데이터를 업데이트
+        Log.d("checkChatRoom",chatRoomUid.toString())
         fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true)
             .addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("checkChatRoom data change",chatRoomUid.toString())
                     for (item in snapshot.children) {
                         println(item)
                         val chatModel = item.getValue<ChatModel>()
@@ -114,12 +120,14 @@ class ChatActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    messageActivity_textView_topName.text = destinationUid
                     getMessageList()
                 }
             })
         }
 
         fun getMessageList() {
+            Log.d("getMessageList",chatRoomUid.toString())
             fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -129,7 +137,7 @@ class ChatActivity : AppCompatActivity() {
                     for(data in snapshot.children) {
                         val item = data.getValue<Comment>()
                         comments.add(item!!)
-                        println(comments)
+                        println("comments 내용!"+comments)
                     }
                     notifyDataSetChanged()
                     //메세지를 보낼 시 화면을 맨 밑으로 내림
@@ -140,6 +148,7 @@ class ChatActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
             val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
+            Log.d("리사이클러뷰 만들었음~","!")
             return MessageViewHolder(view)
         }
         @SuppressLint("RtlHardcoded")
@@ -148,6 +157,7 @@ class ChatActivity : AppCompatActivity() {
             holder.textView_message.text = comments[position].message
             holder.textView_time.text = comments[position].time
             //본인 채팅일 경우
+            Log.d("리사이클러뷰 comments posiotion",comments[position].uid.toString())
             if(comments[position].uid.equals(uid)) {
                 holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
                 holder.textView_name.visibility = View.INVISIBLE
