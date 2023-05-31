@@ -15,8 +15,11 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.NetworkResponse
+import com.android.volley.ParseError
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.JsonArray
@@ -25,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_writing.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -117,6 +121,20 @@ class UserFragment : Fragment() {
             }
 
         ){
+            //response를 UTF8로 변경해주는 소스코드
+            override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                return try {
+                    val utf8String = String(response.data, Charsets.UTF_8)
+                    Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                } catch (e: UnsupportedEncodingException) {
+                    // log error
+                    Response.error(ParseError(e))
+                } catch (e: Exception) {
+                    // log error
+                    Response.error(ParseError(e))
+                }
+            }
+
             override fun getParams():MutableMap<String,String>{
                 val params=HashMap<String,String>()
                 return params
@@ -211,6 +229,19 @@ class UserFragment : Fragment() {
                 }
 
             ){
+                //response를 UTF8로 변경해주는 소스코드
+                override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                    return try {
+                        val utf8String = String(response.data, Charsets.UTF_8)
+                        Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                    } catch (e: UnsupportedEncodingException) {
+                        // log error
+                        Response.error(ParseError(e))
+                    } catch (e: Exception) {
+                        // log error
+                        Response.error(ParseError(e))
+                    }
+                }
                 override fun getParams():MutableMap<String,String>{
                     val params=HashMap<String,String>()
                     return params

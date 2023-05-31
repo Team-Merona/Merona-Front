@@ -9,8 +9,11 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.android.volley.NetworkResponse
+import com.android.volley.ParseError
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.merona.databinding.ActivityMainBinding
@@ -22,6 +25,7 @@ import kotlinx.android.synthetic.main.check_dialog.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 class ModifyActivity : AppCompatActivity() {
     private val getDataUrl = "http://3.36.142.103:8080/user/info/"
@@ -73,6 +77,19 @@ class ModifyActivity : AppCompatActivity() {
                 Response.ErrorListener {
                     Log.d("error",it.toString())
                 }) {
+                //response를 UTF8로 변경해주는 소스코드
+                override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                    return try {
+                        val utf8String = String(response.data, Charsets.UTF_8)
+                        Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                    } catch (e: UnsupportedEncodingException) {
+                        // log error
+                        Response.error(ParseError(e))
+                    } catch (e: Exception) {
+                        // log error
+                        Response.error(ParseError(e))
+                    }
+                }
 
                 override fun getBody(): ByteArray {
                     val json = JSONObject()

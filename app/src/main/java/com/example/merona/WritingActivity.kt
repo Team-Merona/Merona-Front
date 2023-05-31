@@ -20,7 +20,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.android.volley.NetworkResponse
+import com.android.volley.ParseError
 import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_modify.*
@@ -33,6 +36,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 class WritingActivity : AppCompatActivity() {
     val writingUrl = "http://3.36.142.103:8080/board/save"
@@ -76,6 +80,20 @@ class WritingActivity : AppCompatActivity() {
                     Log.d("error",it.toString())
                 }
             ){
+                //response를 UTF8로 변경해주는 소스코드
+                override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                    return try {
+                        val utf8String = String(response.data, Charsets.UTF_8)
+                        Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                    } catch (e: UnsupportedEncodingException) {
+                        // log error
+                        Response.error(ParseError(e))
+                    } catch (e: Exception) {
+                        // log error
+                        Response.error(ParseError(e))
+                    }
+                }
+
                 override fun getBody(): ByteArray {
                     val json = JSONObject()
                     json.put("title", ""+inputTitle.text.toString())

@@ -47,7 +47,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginLeft="230dp"
                     android:background="@drawable/solid_button"
                     android:text="요청 대기중"
                     android:textColor="#FFFFFF"
@@ -159,6 +159,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="17sp"
+                android:text="" />
 
             <FrameLayout
                 android:id="@+id/detail_framelayout"
