@@ -1,11 +1,16 @@
 package com.example.merona
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.app.PendingIntent.getActivity
 import android.content.Intent
+import android.net.http.SslError
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
+import android.view.ViewGroup
+import android.webkit.*
 import android.widget.SeekBar
 import androidx.appcompat.widget.Toolbar
 import com.android.volley.Response
@@ -16,10 +21,15 @@ import kotlinx.android.synthetic.main.activity_modify.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_writing.*
 import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 class WritingActivity : AppCompatActivity() {
-    val writingUrl = "http://10.0.2.2:8080/board/save"
+    val writingUrl = "http://3.36.142.103:8080/board/save"
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +44,13 @@ class WritingActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.left_arrow)
 
+        inputAddress.setOnClickListener{
+            showKakaoAddressWebView()
+        }
 
-        //가입하기 버튼 클릭 시
+
+
+            //가입하기 버튼 클릭 시
         PostButton.setOnClickListener {
             val stringRequest: StringRequest = object : StringRequest(
                 Method.POST, writingUrl,
@@ -84,5 +99,84 @@ class WritingActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun showKakaoAddressWebView() {
+
+        webView.settings.apply {
+            javaScriptEnabled = true
+            javaScriptCanOpenWindowsAutomatically = true
+            setSupportMultipleWindows(true)
+        }
+
+        webView.apply {
+            addJavascriptInterface(WebViewData(), "map")
+            webViewClient = client
+            webChromeClient = chromeClient
+            loadUrl("http://3.36.142.103:8080/map.php")
+        }
+    }
+
+    private val client: WebViewClient = object : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            return false
+        }
+
+        override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+            handler?.proceed()
+        }
+    }
+
+    private inner class WebViewData {
+        @JavascriptInterface
+        fun getAddress(zoneCode: String, roadAddress: String, buildingName: String) {
+
+            CoroutineScope(Dispatchers.Default).launch {
+
+                withContext(CoroutineScope(Dispatchers.Main).coroutineContext) {
+
+                    inputAddress.setText("($zoneCode) $roadAddress $buildingName")
+
+                }
+            }
+        }
+    }
+
+    private val chromeClient = object : WebChromeClient() {
+
+        override fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?): Boolean {
+
+            val newWebView = WebView(applicationContext)
+
+            newWebView.settings.javaScriptEnabled = true
+
+            val dialog = Dialog(applicationContext)
+
+            dialog.setContentView(newWebView)
+
+            val params = dialog.window!!.attributes
+
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window!!.attributes = params
+            dialog.show()
+
+            newWebView.webChromeClient = object : WebChromeClient() {
+                override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
+                    super.onJsAlert(view, url, message, result)
+                    return true
+                }
+
+                override fun onCloseWindow(window: WebView?) {
+                    dialog.dismiss()
+                }
+            }
+
+            (resultMsg!!.obj as WebView.WebViewTransport).webView = newWebView
+            resultMsg.sendToTarget()
+
+            return true
+        }
     }
 }

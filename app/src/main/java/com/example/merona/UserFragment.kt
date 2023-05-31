@@ -41,8 +41,8 @@ class UserFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private var boardUrl = "http://10.0.2.2:8080/user/list"
-    private var stateUrl = "http://10.0.2.2:8080/board/list/"
+    private var boardUrl = "http://3.36.142.103:8080/user/list"
+    private var stateUrl = "http://3.36.142.103:8080/board/list/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
