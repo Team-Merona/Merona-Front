@@ -114,7 +114,7 @@ class MessageFragment : Fragment() {
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ChatActivity::class.java)
-                intent.putExtra("destinationUid", destinationUsers[position])
+                intent.putExtra("destinationUId", destinationUsers[position])
                 context?.startActivity(intent)
             }
         }

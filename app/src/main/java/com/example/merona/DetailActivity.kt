@@ -37,6 +37,14 @@ class DetailActivity : AppCompatActivity() {
                 email = jsonObj.getString("email")
 
                 tvName.text = email+"님"
+                if (email==MyApplication.prefs.getString("email","")){
+                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
+                    chat_btn.isEnabled = false
+                }
+                else{
+                    chat_btn.setBackgroundResource(R.drawable.rectangle_button_79d4682)
+                    chat_btn.isEnabled = true
+                }
                 tvTitle.text = title
                 tvContents.text = contents
                 tvCost.text = cost.toString()+"원"
