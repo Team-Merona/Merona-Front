@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,6 +19,8 @@ import org.json.JSONObject
 class DetailActivity : AppCompatActivity() {
     val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
     var email : String? = null //게시글 작성자의 ID
+
+    private lateinit var naverMap: NaverMap
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -90,6 +95,8 @@ class DetailActivity : AppCompatActivity() {
             intent.putExtra("boardId", boardId)
             startActivity(intent)
         }
+
+
 
     }
 
