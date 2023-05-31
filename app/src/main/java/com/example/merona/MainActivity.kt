@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         //btn_addBoard 버튼 클릭 시 게시글 추가 화면 라우팅
         btn_addBoard.setOnClickListener{
             val intent = Intent(this, WritingActivity::class.java)
+            intent.putExtra("data","")
             startActivity(intent)
         }
 

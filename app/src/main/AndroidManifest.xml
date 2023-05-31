@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".WebViewActivity"
+            android:name=".RoadSearchActivity"
             android:exported="false" />
         <activity
             android:name=".DetailActivity"
@@ -65,8 +65,8 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="cta5vodl7s" />
         <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="cta5vodl7s" />
+            android:name="com.kakao.sdk.AppKey"
+            android:value="	d89b7cfd985cbf3288b6e904ae6fba31" />
     </application>
 
 </manifest>

@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
+    <Button
         android:id="@+id/inputAddress"
         android:layout_width="330dp"
         android:layout_height="43dp"
@@ -81,8 +81,6 @@
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
         android:layout_marginTop="15dp"
-        android:hint="입력하세요"
-        android:inputType="text"
         android:paddingLeft="20dp"
         android:textColorHint="#B2B2B2"
         android:textSize="16sp"
