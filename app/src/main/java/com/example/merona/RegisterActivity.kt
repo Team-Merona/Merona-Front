@@ -23,8 +23,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class RegisterActivity : AppCompatActivity() {
-    val registerUrl = "http://10.0.2.2:8080/user/signup"
-    val idUrl = "http://10.0.2.2:8080/user/find/"
+    val registerUrl = "http://3.36.142.103:8080/user/signup"
+    val idUrl = "http://3.36.142.103:8080/user/find/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

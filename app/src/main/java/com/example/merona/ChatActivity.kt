@@ -1,6 +1,7 @@
 package com.example.merona
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -12,9 +13,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.merona.ChatModel.Comment
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.merona.ChatModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -24,6 +30,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.activity_detail.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -32,10 +40,14 @@ class ChatActivity : AppCompatActivity() {
     private val fireDatabase = FirebaseDatabase.getInstance().reference
     private var chatRoomUid : String? = null
     private var destinationUid : String? = null
+    private var boardId : Long? = null
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
 
-    @SuppressLint("SimpleDateFormat", "MissingInflatedId")
+    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
+    private var stateUrl = "http://3.36.142.103:8080/board/list/"
+
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -49,9 +61,83 @@ class ChatActivity : AppCompatActivity() {
         val curTime = dataFormat.format(Date(time)).toString()
 
         destinationUid = intent.getStringExtra("destinationUId")
+        boardId = intent.getLongExtra("boardId",0)
         //uid = 본인 uid
         //uid = Firebase.auth.currentUser?.uid.toString()
         uid = MyApplication.prefs.getString("email", "")
+        recyclerView = findViewById(R.id.messageActivity_recyclerview)
+
+        val request=object: StringRequest(
+            Request.Method.GET,
+            boardDetailUrl+boardId.toString(),
+            Response.Listener<String>{ response ->
+                Log.d("응답!",response)
+                var strResp = response.toString()
+                val jsonObj: JSONObject = JSONObject(strResp)
+                val id = jsonObj.getLong("id")
+                var state = jsonObj.getString("state")
+                if (state=="REQUEST_WAITING"){
+                    ongoingBtn.setBackgroundResource(R.drawable.solid_button_44be2d)
+                    ongoingBtn.isEnabled = true
+                }
+                else{
+                    ongoingBtn.setBackgroundResource(R.drawable.rectangle_button)
+                    ongoingBtn.isEnabled = false
+                }
+            },
+            {
+                Log.d("에러!","x..")
+            }
+
+        ){
+            override fun getParams():MutableMap<String,String>{
+                val params=HashMap<String,String>()
+                return params
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headerMap: MutableMap<String, String> = HashMap()
+                headerMap["Content-Type"] = "application/json"
+                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                return headerMap
+            }
+        }
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(request)
+
+
+        // 심부름 수락하기 버튼
+        ongoingBtn.setOnClickListener{
+            val request=object: StringRequest(
+                Request.Method.PATCH,
+                "$stateUrl$boardId/ongoing",
+                Response.Listener<String>{ response ->
+                    Log.d("응답!",response)
+                    ongoingBtn.setBackgroundResource(R.drawable.rectangle_button)
+                    ongoingBtn.isEnabled = false
+                },
+                {
+                    Log.d("에러!","x..")
+                }
+
+            ){
+                override fun getParams():MutableMap<String,String>{
+                    val params=HashMap<String,String>()
+                    return params
+                }
+
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headerMap: MutableMap<String, String> = HashMap()
+                    headerMap["Content-Type"] = "application/json"
+                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    return headerMap
+                }
+            }
+
+            val queue = Volley.newRequestQueue(this)
+            queue.add(request)
+        }
 
         //send 이미지 클릭 시 메세지 보내기
         imageView.setOnClickListener{
@@ -76,22 +162,26 @@ class ChatActivity : AppCompatActivity() {
                     }, 1000L)
                     Log.d("chatUidNull dest", "$destinationUid")
                 }
+
             } else {
                 fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
                 messageActivity_editText.text = null
                 Log.d("chatUidNotMull dest", "$destinationUid")
             }
         }
-    checkChatRoom()
+        checkChatRoom()
+
     }
 
     private fun checkChatRoom() {
         //실시간으로 앱 데이터를 업데이트
+        Log.d("checkChatRoom",chatRoomUid.toString())
         fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true)
             .addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("checkChatRoom data change",chatRoomUid.toString())
                     for (item in snapshot.children) {
                         println(item)
                         val chatModel = item.getValue<ChatModel>()
@@ -114,12 +204,14 @@ class ChatActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    messageActivity_textView_topName.text = destinationUid
                     getMessageList()
                 }
             })
         }
 
         fun getMessageList() {
+            Log.d("getMessageList",chatRoomUid.toString())
             fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -129,7 +221,7 @@ class ChatActivity : AppCompatActivity() {
                     for(data in snapshot.children) {
                         val item = data.getValue<Comment>()
                         comments.add(item!!)
-                        println(comments)
+                        println("comments 내용!"+comments)
                     }
                     notifyDataSetChanged()
                     //메세지를 보낼 시 화면을 맨 밑으로 내림
@@ -140,6 +232,7 @@ class ChatActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
             val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
+            Log.d("리사이클러뷰 만들었음~","!")
             return MessageViewHolder(view)
         }
         @SuppressLint("RtlHardcoded")
@@ -148,6 +241,7 @@ class ChatActivity : AppCompatActivity() {
             holder.textView_message.text = comments[position].message
             holder.textView_time.text = comments[position].time
             //본인 채팅일 경우
+            Log.d("리사이클러뷰 comments posiotion",comments[position].uid.toString())
             if(comments[position].uid.equals(uid)) {
                 holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
                 holder.textView_name.visibility = View.INVISIBLE

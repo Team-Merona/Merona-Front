@@ -29,6 +29,16 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/ongoingBtn"
+            android:layout_marginLeft="210dp"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="심부름 수락하기"
+            android:textColor="@color/white"
+            android:background="@drawable/solid_button_44be2d"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -24,9 +24,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class ModifyActivity : AppCompatActivity() {
-    private val getDataUrl = "http://10.0.2.2:8080/user/info/"
-    private val idUrl = "http://10.0.2.2:8080/user/find/"
-    private val modifyUrl = "http://10.0.2.2:8080/user/modify/"
+    private val getDataUrl = "http://3.36.142.103:8080/user/info/"
+    private val idUrl = "http://3.36.142.103:8080/user/find/"
+    private val modifyUrl = "http://3.36.142.103:8080/user/modify/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

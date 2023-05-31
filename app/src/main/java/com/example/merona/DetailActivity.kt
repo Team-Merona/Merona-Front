@@ -14,7 +14,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class DetailActivity : AppCompatActivity() {
-    val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
+    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
     var email : String? = null //게시글 작성자의 ID
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +37,14 @@ class DetailActivity : AppCompatActivity() {
                 email = jsonObj.getString("email")
 
                 tvName.text = email+"님"
+                if (email==MyApplication.prefs.getString("email","")){
+                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
+                    chat_btn.isEnabled = false
+                }
+                else{
+                    chat_btn.setBackgroundResource(R.drawable.rectangle_button_79d4682)
+                    chat_btn.isEnabled = true
+                }
                 tvTitle.text = title
                 tvContents.text = contents
                 tvCost.text = cost.toString()+"원"
@@ -79,6 +87,7 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(this, ChatActivity::class.java)
             //destinationUId에 게시글 작성자의 ID를 넣음
             intent.putExtra("destinationUId", email)
+            intent.putExtra("boardId", boardId)
             startActivity(intent)
         }
 
