@@ -3,7 +3,10 @@ package com.example.merona
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.PendingIntent.getActivity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.http.SslError
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,8 +14,12 @@ import android.os.Message
 import android.util.Log
 import android.view.ViewGroup
 import android.webkit.*
+import android.widget.Button
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -35,6 +42,9 @@ class WritingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_writing)
 
+        // broadcast 등록
+        register()
+
         PostButton.isEnabled = true
 
         //뒤로가기 버튼 만들기
@@ -44,8 +54,12 @@ class WritingActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.left_arrow)
 
+        inputAddress.text=intent.getStringExtra("data").toString()
+        Log.d("Writing Acitivy 데이터~",intent.getStringExtra("data").toString())
         inputAddress.setOnClickListener{
-            showKakaoAddressWebView()
+//            showKakaoAddressWebView()
+            val intent = Intent(this, RoadSearchActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -101,6 +115,24 @@ class WritingActivity : AppCompatActivity() {
 
     }
 
+    private fun register() {
+        LocalBroadcastManager.getInstance(applicationContext).registerReceiver(
+            addressReceiver , IntentFilter("address")
+        )
+    }
+
+    fun unRegister() {
+        LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(addressReceiver)
+    }
+
+    private val addressReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            Log.d("addressReceiver", "Intent: $intent")
+            val address : Button = findViewById(R.id.inputAddress)
+            address.text = intent.getStringExtra("data").toString()
+        }
+    }
+
     private fun showKakaoAddressWebView() {
 
         webView.settings.apply {
@@ -110,10 +142,10 @@ class WritingActivity : AppCompatActivity() {
         }
 
         webView.apply {
-            addJavascriptInterface(WebViewData(), "map")
+            addJavascriptInterface(WebViewData(), "MysosoApp")
             webViewClient = client
             webChromeClient = chromeClient
-            loadUrl("http://3.36.142.103:8080/map.php")
+            loadUrl("http://3.36.142.103:8080/map.html")
         }
     }
 
@@ -165,6 +197,7 @@ class WritingActivity : AppCompatActivity() {
             newWebView.webChromeClient = object : WebChromeClient() {
                 override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
                     super.onJsAlert(view, url, message, result)
+                    webView.loadUrl("javascript:sample2_execDaumPostcode();");
                     return true
                 }
 

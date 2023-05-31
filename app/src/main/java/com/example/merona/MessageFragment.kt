@@ -80,12 +80,12 @@ class MessageFragment : Fragment() {
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
-            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false))
+            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_message, parent, false))
         }
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val textView_title : TextView = itemView.findViewById(R.id.messageItem_textview_name)
-            val textView_lastMessage : TextView = itemView.findViewById(R.id.messageItem_textView_message)
+            val textView_title : TextView = itemView.findViewById(R.id.chat_textview_title)
+            val textView_lastMessage : TextView = itemView.findViewById(R.id.chat_item_textview_lastmessage)
         }
 
         override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
