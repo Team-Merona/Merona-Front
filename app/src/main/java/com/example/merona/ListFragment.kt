@@ -7,21 +7,23 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.NetworkResponse
+import com.android.volley.ParseError
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.firebase.database.DatabaseReference
 import org.json.JSONArray
+import java.io.UnsupportedEncodingException
+
 
 class ListFragment : Fragment() {
 
@@ -64,11 +66,11 @@ class ListFragment : Fragment() {
 
                     val id = jsonObject.getLong("id")
                     val title = jsonObject.getString("title")
-//                    val address = jsonObject.getString("address")
-//                    val jsonArray = address.
+                    val addressJsonObject = jsonObject.getJSONObject("address")
+                    val address = addressJsonObject.getString("streetAddress")
                     val cost = jsonObject.getInt("cost")
 
-                    itemList.add(BoardItem(id,title,"address",cost.toString()+"원"))
+                    itemList.add(BoardItem(id,title,address,cost.toString()+"원"))
                 }
 
                 Log.d("저장!", itemList.toString())
@@ -80,6 +82,20 @@ class ListFragment : Fragment() {
             }
 
         ){
+            //response를 UTF8로 변경해주는 소스코드
+            override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                return try {
+                    val utf8String = String(response.data, Charsets.UTF_8)
+                    Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                } catch (e: UnsupportedEncodingException) {
+                    // log error
+                    Response.error(ParseError(e))
+                } catch (e: Exception) {
+                    // log error
+                    Response.error(ParseError(e))
+                }
+            }
+
             override fun getParams():MutableMap<String,String>{
                 val params=HashMap<String,String>()
                 return params
@@ -133,11 +149,11 @@ class ListFragment : Fragment() {
 
                         val id = jsonObject.getLong("id")
                         val title = jsonObject.getString("title")
-//                    val address = jsonObject.getString("address")
-//                    val jsonArray = address.
+                        val addressJsonObject = jsonObject.getJSONObject("address")
+                        val address = addressJsonObject.getString("streetAddress")
                         val cost = jsonObject.getInt("cost")
 
-                        itemList.add(BoardItem(id,title,"address",cost.toString()+"원"))
+                        itemList.add(BoardItem(id,title,address,cost.toString()+"원"))
                     }
 
                     Log.d("저장!", itemList.toString())
@@ -149,6 +165,20 @@ class ListFragment : Fragment() {
                 }
 
             ){
+                //response를 UTF8로 변경해주는 소스코드
+                override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                    return try {
+                        val utf8String = String(response.data, Charsets.UTF_8)
+                        Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                    } catch (e: UnsupportedEncodingException) {
+                        // log error
+                        Response.error(ParseError(e))
+                    } catch (e: Exception) {
+                        // log error
+                        Response.error(ParseError(e))
+                    }
+                }
+
                 override fun getParams():MutableMap<String,String>{
                     val params=HashMap<String,String>()
                     return params

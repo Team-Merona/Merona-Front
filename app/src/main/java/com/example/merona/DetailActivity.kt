@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatButton
+import com.android.volley.NetworkResponse
+import com.android.volley.ParseError
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.naver.maps.map.MapFragment
@@ -15,6 +18,7 @@ import com.naver.maps.map.NaverMap
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 class DetailActivity : AppCompatActivity() {
     val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
@@ -36,15 +40,16 @@ class DetailActivity : AppCompatActivity() {
                 val id = jsonObj.getLong("id")
                 val title = jsonObj.getString("title")
                 val contents = jsonObj.getString("contents")
-                val address = jsonObj.getString("address")
+                val addressJsonObject = jsonObj.getJSONObject("address")
+                val address = addressJsonObject.getString("streetAddress")
                 val cost = jsonObj.getString("cost")
                 var state = jsonObj.getString("state")
                 email = jsonObj.getString("email")
 
                 tvName.text = email+"님"
                 if (email==MyApplication.prefs.getString("email","")){
-                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
-                    chat_btn.isEnabled = false
+//                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
+//                    chat_btn.isEnabled = false
                 }
                 else{
                     chat_btn.setBackgroundResource(R.drawable.rectangle_button_79d4682)
@@ -70,6 +75,21 @@ class DetailActivity : AppCompatActivity() {
             }
 
         ){
+            //response를 UTF8로 변경해주는 소스코드
+            override fun parseNetworkResponse(response: NetworkResponse): Response<String?>? {
+                return try {
+                    val utf8String = String(response.data, Charsets.UTF_8)
+                    Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
+                } catch (e: UnsupportedEncodingException) {
+                    // log error
+                    Response.error(ParseError(e))
+                } catch (e: Exception) {
+                    // log error
+                    Response.error(ParseError(e))
+                }
+            }
+
+
             override fun getParams():MutableMap<String,String>{
                 val params=HashMap<String,String>()
                 return params
