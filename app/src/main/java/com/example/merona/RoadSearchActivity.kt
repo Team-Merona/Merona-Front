@@ -41,6 +41,7 @@ class RoadSearchActivity : AppCompatActivity() {
                 browser!!.loadUrl("javascript:sample2_execDaumPostcode();")
             }
         }
-        browser!!.loadUrl("http://3.36.142.103:8080/map.html")
+//        browser!!.loadUrl("http://3.36.142.103:8080/map.html")
+        browser!!.loadUrl("http://10.0.2.2:8080/map.html")
     }
 }

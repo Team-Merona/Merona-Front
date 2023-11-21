@@ -44,8 +44,10 @@ class ChatActivity : AppCompatActivity() {
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
 
-    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
-    private var stateUrl = "http://3.36.142.103:8080/board/list/"
+//    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
+//    private var stateUrl = "http://3.36.142.103:8080/board/list/"
+    val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
+    private var stateUrl = "http://10.0.2.2:8080/board/list/"
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
