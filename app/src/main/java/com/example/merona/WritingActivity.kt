@@ -39,7 +39,8 @@ import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
 class WritingActivity : AppCompatActivity() {
-    val writingUrl = "http://3.36.142.103:8080/board/save"
+//    val writingUrl = "http://3.36.142.103:8080/board/save"
+    val writingUrl = "http://10.0.2.2:8080/board/save"
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -163,7 +164,7 @@ class WritingActivity : AppCompatActivity() {
             addJavascriptInterface(WebViewData(), "MysosoApp")
             webViewClient = client
             webChromeClient = chromeClient
-            loadUrl("http://3.36.142.103:8080/map.html")
+            loadUrl("http://10.0.2.2:8080/map.html")
         }
     }
 

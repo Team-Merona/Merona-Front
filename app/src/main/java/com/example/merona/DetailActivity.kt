@@ -21,7 +21,8 @@ import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
 class DetailActivity : AppCompatActivity() {
-    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
+//    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
+    val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
     var email : String? = null //게시글 작성자의 ID
 
     private lateinit var naverMap: NaverMap
