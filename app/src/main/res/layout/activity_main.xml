@@ -14,28 +14,30 @@
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/btn_modify"-->
-<!--            android:layout_width="45dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginLeft="290dp"-->
-<!--            android:layout_marginTop="100dp"-->
-<!--            android:background="#00FF0000"-->
-<!--            android:drawableBottom="@drawable/ic_create" />-->
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btn_modify"-->
+        <!--            android:layout_width="45dp"-->
+        <!--            android:layout_height="45dp"-->
+        <!--            android:layout_marginLeft="290dp"-->
+        <!--            android:layout_marginTop="100dp"-->
+        <!--            android:background="#00FF0000"-->
+        <!--            android:drawableBottom="@drawable/ic_create" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_addBoard"
             android:layout_width="195dp"
-            android:text="게시글 작성하기"
-            android:textColor="@color/white"
-            android:textSize="17sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="650dp"
-            android:background="@drawable/rectangle_button_79d4682" />
+            android:background="@drawable/rectangle_button_79d4682"
+            android:text="게시글 작성하기"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigationview"
