@@ -36,7 +36,7 @@
         android:id="@+id/btn_modify"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="280dp"
         android:layout_marginTop="90dp"
         android:background="#00FF0000"
         android:drawableBottom="@drawable/ic_create" />

@@ -132,7 +132,7 @@
                     android:id="@+id/tvCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginLeft="150dp"
                     android:layout_marginTop="20dp"
                     android:text="가격"
                     android:fontFamily="@font/maple_regular"
@@ -147,7 +147,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/solid_button_gray"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>

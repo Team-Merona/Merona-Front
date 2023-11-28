@@ -72,7 +72,7 @@
 
                 <EditText
                     android:id="@+id/ModifyEmail"
-                    android:layout_width="200dp"
+                    android:layout_width="210dp"
                     android:layout_height="43dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
@@ -123,7 +123,7 @@
 
             <EditText
                 android:id="@+id/ModifyPw"
-                android:layout_width="290dp"
+                android:layout_width="300dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -161,7 +161,7 @@
 
             <EditText
                 android:id="@+id/ModifyConfirmPassword"
-                android:layout_width="290dp"
+                android:layout_width="300dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -196,7 +196,7 @@
 
             <EditText
                 android:id="@+id/ModifyName"
-                android:layout_width="290dp"
+                android:layout_width="300dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -222,8 +222,8 @@
         android:layout_height="54dp"
         android:layout_gravity="center"
         android:background="@drawable/rectangle_button_79d4682"
-        android:hint="수정완료"
         android:fontFamily="@font/maple_bold"
+        android:hint="수정완료"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -231,7 +231,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.88" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

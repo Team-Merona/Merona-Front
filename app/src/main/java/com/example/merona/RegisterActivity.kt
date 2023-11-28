@@ -27,8 +27,8 @@ class RegisterActivity : AppCompatActivity() {
 //    val idUrl = "http://3.36.142.103:8080/user/find/"
 //    val registerUrl = "http://10.0.2.2:8080/user/signup"
 //    val idUrl = "http://10.0.2.2:8080/user/find/"
-    val registerUrl = "http://172.30.1.52:8080/user/signup"
-    val idUrl = "http://172.30.1.52:8080/user/find/"
+    val registerUrl = "http://192.168.219.104:8080/user/signup"
+    val idUrl = "http://192.168.219.104:8080/user/find/"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
