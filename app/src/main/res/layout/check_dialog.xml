@@ -13,6 +13,7 @@
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:textSize="18sp"
+        android:fontFamily="@font/maple_regular"
         android:text="로그인에 실패하였습니다."/>
 
     <LinearLayout
@@ -28,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="확인"
+            android:fontFamily="@font/maple_regular"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:background="@drawable/solid_button"/>

@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#79D468">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#79D468"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,19 +23,19 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/maple_bold"
             android:text="친구"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/ongoingBtn"
             android:layout_marginLeft="210dp"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:text="심부름 수락하기"
             android:textColor="@color/white"
             android:background="@drawable/solid_button_44be2d"/>
@@ -46,7 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/bg_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,12 @@
             android:id="@+id/messageActivity_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_chat"/>
+            android:layout_margin="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_chat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,7 +72,10 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@color/white">
 
         <EditText
             android:id="@+id/messageActivity_editText"
@@ -75,9 +84,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/bg_content_et"
             android:layout_marginEnd="55dp"
             android:layout_marginRight="55dp"
+            android:background="@drawable/bg_content_et"
+            android:fontFamily="@font/maple_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

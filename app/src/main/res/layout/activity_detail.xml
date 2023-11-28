@@ -35,6 +35,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:text="이름"
+                    android:fontFamily="@font/maple_bold"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +48,10 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="230dp"
+                    android:layout_marginLeft="190dp"
                     android:background="@drawable/solid_button"
                     android:text="요청 대기중"
+                    android:fontFamily="@font/maple_regular"
                     android:textColor="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +72,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="글 제목"
+                android:fontFamily="@font/maple_bold"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +92,7 @@
                 android:foregroundGravity="center"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
+                android:fontFamily="@font/maple_regular"
                 android:textColorHint="#B2B2B2"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -115,8 +119,9 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:text="심부름비"
+                    android:fontFamily="@font/maple_bold"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -127,9 +132,10 @@
                     android:id="@+id/tvCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="210dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="20dp"
                     android:text="가격"
+                    android:fontFamily="@font/maple_regular"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -155,6 +161,7 @@
                 android:layout_marginTop="30dp"
                 android:text="주소"
                 android:textSize="20dp"
+                android:fontFamily="@font/maple_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -165,6 +172,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/maple_regular"
                 android:textSize="17sp"
                 android:text="" />
 
@@ -184,23 +194,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:name="com.naver.maps.map.MapFragment"/>
-
             </FrameLayout>
-
-
         </LinearLayout>
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/chat_btn"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         android:background="@drawable/rectangle_button_79d4682"
         android:text="채팅하기"
+        android:fontFamily="@font/maple_bold"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:layout_marginBottom="30dp"/>

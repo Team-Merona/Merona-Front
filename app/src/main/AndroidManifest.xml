@@ -33,6 +33,7 @@
         <activity
             android:name=".WritingActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".HomeFragment"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
@@ -44,6 +45,7 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
