@@ -1,7 +1,9 @@
 package com.example.merona
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
@@ -29,6 +31,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var PERMISSION_REQUEST_CODE = 100
+    val PERMISSIONS = arrayOf(
+        android.Manifest.permission.ACCESS_FINE_LOCATION,
+        android.Manifest.permission.ACCESS_COARSE_LOCATION
+    )
     private lateinit var naverMap: NaverMap
     private lateinit var mLocationSource: FusedLocationSource
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +56,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         //위치를 반환하는 구현체인 FusedLocationSource 생성
-        mLocationSource = FusedLocationSource(this, 100)
+        mLocationSource = FusedLocationSource(this, PERMISSION_REQUEST_CODE)
     }
 
     @UiThread
@@ -59,54 +66,17 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             16.0 //줌 레벨
         )
         naverMap.cameraPosition = cameraPosition
+
         this.naverMap = naverMap
+        naverMap.locationSource = mLocationSource
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity()) //gps 자동으로 받아오기
-        setUpdateLocationListner() //내 위치를 가져오는 코드
+        //현재 내 위치를 계속 tracking하도록 설정
+        naverMap.locationTrackingMode = LocationTrackingMode.Follow
     }
 
     //내 위치를 가져오는 코드
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient //자동으로 gps값을 받아온다.
-    lateinit var locationCallback: LocationCallback //gps 응답 값을 가져온다.
-
-    @SuppressLint("MissingPermission")
-    fun setUpdateLocationListner() {
-        val locationRequest = LocationRequest.create()
-        locationRequest.run {
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY //높은 정확도
-            interval = 1000 //1초에 한번씩 GPS 요청
-        }
-
-        //location 요청 함수 호출
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                for ((i, location) in locationResult.locations.withIndex()) {
-                    Log.d("location: ", "${location.latitude}, ${location.longitude}")
-                    setLastLocation(location)
-                }
-            }
-        }
-
-        //좌표계를 주기적으로 갱신
-        fusedLocationProviderClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            Looper.myLooper()
-        )
-    }
-
-    fun setLastLocation(location: Location) {
-        val myLocation = LatLng(location.latitude, location.longitude)
-        val marker = Marker()
-        marker.position = myLocation
-        marker.map = naverMap
-        //마커
-        val cameraUpdate = CameraUpdate.scrollTo(myLocation)
-        naverMap.moveCamera(cameraUpdate)
-        naverMap.maxZoom = 18.0
-        naverMap.minZoom = 5.0
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
