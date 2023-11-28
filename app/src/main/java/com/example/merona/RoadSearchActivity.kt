@@ -35,6 +35,7 @@ class RoadSearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_web_view)
         browser = findViewById<View>(R.id.address_webView) as WebView
         browser!!.settings.javaScriptEnabled = true
+        browser!!.settings.domStorageEnabled = true
         browser!!.addJavascriptInterface(MyJavaScriptInterface(), "Android")
         browser!!.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
@@ -42,6 +43,6 @@ class RoadSearchActivity : AppCompatActivity() {
             }
         }
 //        browser!!.loadUrl("http://3.36.142.103:8080/map.html")
-        browser!!.loadUrl("http://10.0.2.2:8080/map.html")
+        browser!!.loadUrl("http://172.30.1.52:8080/map.html")
     }
 }

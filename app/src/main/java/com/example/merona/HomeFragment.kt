@@ -18,6 +18,7 @@ import com.google.android.gms.location.*
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.util.FusedLocationSource
 import kotlin.contracts.contract
 
 
@@ -29,7 +30,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private var param2: String? = null
 
     private lateinit var naverMap: NaverMap
-
+    private lateinit var mLocationSource: FusedLocationSource
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -44,7 +45,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             ?: MapFragment.newInstance().also {
                 fm.beginTransaction().add(R.id.map_view, it).commit()
             } //권한
+        //getMapAsync를 호출하여 비동기로 onMapReady 콜백 메소드 호출
         mapFragment.getMapAsync(this)
+
+        //위치를 반환하는 구현체인 FusedLocationSource 생성
+        mLocationSource = FusedLocationSource(this, 100)
     }
 
     @UiThread

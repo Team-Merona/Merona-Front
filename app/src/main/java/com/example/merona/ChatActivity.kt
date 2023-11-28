@@ -43,6 +43,7 @@ class ChatActivity : AppCompatActivity() {
     private var boardId : Long? = null
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
+    //게시글 id 속성
 
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
 //    private var stateUrl = "http://3.36.142.103:8080/board/list/"
