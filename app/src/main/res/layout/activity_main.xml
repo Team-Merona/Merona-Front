@@ -31,10 +31,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_addBoard"
             android:layout_width="195dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="650dp"
+            android:layout_marginTop ="600dp"
             android:background="@drawable/rectangle_button_79d4682"
+            android:fontFamily="@font/maple_regular"
             android:text="게시글 작성하기"
             android:textColor="@color/white"
             android:textSize="17sp" />

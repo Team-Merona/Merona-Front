@@ -10,15 +10,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/maple_bold"
         android:text="오다주웠다"
         android:textColor="#33C143"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <EditText
         android:id="@+id/editTextEmailAddress"
@@ -27,6 +28,7 @@
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
         android:hint="Email Address"
+        android:fontFamily="@font/maple_regular"
         android:paddingLeft="20dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +45,7 @@
         android:background="@drawable/rectangle_button"
         android:gravity="center_vertical"
         android:hint="Password"
+        android:fontFamily="@font/maple_regular"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:textSize="14sp"
@@ -58,6 +61,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_button_79d468"
+        android:fontFamily="@font/maple_regular"
         android:text="로그인"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -66,13 +70,14 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/move_btn"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_button_79d4682"
+        android:fontFamily="@font/maple_regular"
         android:text="회원가입"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -82,7 +87,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.69" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

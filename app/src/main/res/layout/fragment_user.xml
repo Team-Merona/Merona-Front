@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/user_framelayout"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragment">
+    tools:context=".ListFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
         android:text="마이페이지"
-        android:textSize="25dp" />
+        android:fontFamily="@font/maple_bold"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"/>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="90dp"
         android:text=""
         android:textSize="30sp"/>
 
@@ -30,7 +37,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginLeft="320dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:background="#00FF0000"
         android:drawableBottom="@drawable/ic_create" />
 
@@ -39,9 +46,10 @@
         android:id="@+id/text_writing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="내가 쓴 글"
+        android:text="나의 심부름"
+        android:fontFamily="@font/maple_bold"
         android:textSize="20dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="200dp" />
 
     <ImageView

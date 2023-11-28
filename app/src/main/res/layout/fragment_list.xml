@@ -3,29 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListFragment">
+    tools:context=".ListFragment"
+    android:background="#61B551">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="심부름 목록"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:fontFamily="@font/maple_bold"
+        android:textSize="20sp"
+        android:layout_marginTop="25dp"
         android:gravity="center_horizontal"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="15dp"
+        android:background="@drawable/popup_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="70dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_board"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             tools:listitem="@layout/item_board_recyclerview" />
     </ScrollView>
 
