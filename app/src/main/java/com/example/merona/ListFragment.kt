@@ -29,7 +29,7 @@ class ListFragment : Fragment() {
 
 //    private var boardlistUrl = "http://3.36.142.103:8080/board/list"
 //    private var boardlistUrl = "http://10.0.2.2:8080/board/list"
-    private var boardlistUrl = "http://172.30.1.52:8080/board/list"
+    private var boardlistUrl = "http://192.168.219.104:8080/board/list"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

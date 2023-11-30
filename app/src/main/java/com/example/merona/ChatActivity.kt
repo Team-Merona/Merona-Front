@@ -47,8 +47,8 @@ class ChatActivity : AppCompatActivity() {
 
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
 //    private var stateUrl = "http://3.36.142.103:8080/board/list/"
-    val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
-    private var stateUrl = "http://10.0.2.2:8080/board/list/"
+    val boardDetailUrl = "http://192.168.219.104:8080/board/list/"
+    private var stateUrl = "http://192.168.219.104:8080/board/list/"
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -247,12 +247,10 @@ class ChatActivity : AppCompatActivity() {
             Log.d("리사이클러뷰 comments posiotion",comments[position].uid.toString())
             if(comments[position].uid.equals(uid)) {
                 holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
-                holder.textView_name.visibility = View.INVISIBLE
                 holder.layout_destination.visibility = View.INVISIBLE
                 holder.layout_main.gravity = Gravity.RIGHT
             } else { //상대방 채팅
                 holder.layout_destination.visibility = View.VISIBLE
-                holder.textView_name.visibility = View.VISIBLE
                 holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
                 holder.layout_main.gravity = Gravity.LEFT
             }
@@ -260,7 +258,6 @@ class ChatActivity : AppCompatActivity() {
 
         inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val textView_message : TextView = view.findViewById(R.id.messageItem_textView_message)
-            val textView_name : TextView = view.findViewById(R.id.messageItem_textview_name)
             val layout_destination: LinearLayout = view.findViewById(R.id.messageItem_layout_destination)
             val layout_main : LinearLayout = view.findViewById(R.id.messageItem_linearlayout_main)
             val textView_time : TextView = view.findViewById(R.id.messageItem_textView_time)
