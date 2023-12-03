@@ -31,9 +31,9 @@ class ModifyActivity : AppCompatActivity() {
 //    private val getDataUrl = "http://3.36.142.103:8080/user/info/"
 //    private val idUrl = "http://3.36.142.103:8080/user/find/"
 //    private val modifyUrl = "http://3.36.142.103:8080/user/modify/"
-    private val getDataUrl = "http:// 192.168.219.104:8080/user/info/"
-    private val idUrl = "http:// 192.168.219.104:8080/user/find/"
-    private val modifyUrl = "http:// 192.168.219.104:8080/user/modify/"
+    private val getDataUrl = "http://192.168.80.1:8080/user/info/"
+    private val idUrl = "http://192.168.45.7:8080/user/find/"
+    private val modifyUrl = "http://192.168.45.7:8080/user/modify/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

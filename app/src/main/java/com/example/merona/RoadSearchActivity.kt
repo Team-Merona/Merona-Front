@@ -44,6 +44,6 @@ class RoadSearchActivity : AppCompatActivity() {
         }
 //        browser!!.loadUrl("http://3.36.142.103:8080/map.html")
 //        browser!!.loadUrl("http://192.168.219.104:8080/map.html")
-        browser!!.loadUrl("http://192.168.219.104:8080/map.html")
+        browser!!.loadUrl("http://192.168.45.7:8080/map.html")
     }
 }

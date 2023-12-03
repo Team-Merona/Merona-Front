@@ -32,7 +32,7 @@ import java.io.UnsupportedEncodingException
 class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
 //    val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
-    val boardDetailUrl = "http://192.168.219.104:8080/board/list/"
+    val boardDetailUrl = "http://192.168.45.7:8080/board/list/"
     var email : String? = null //게시글 작성자의 ID
 
     //지오코딩

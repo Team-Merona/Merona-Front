@@ -53,7 +53,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var naverMap: NaverMap
     private lateinit var mLocationSource: FusedLocationSource
 
-    private var boardlistUrl = "http://192.168.219.104:8080/board/list"
+    private var boardlistUrl = "http://192.168.45.7:8080/board/list"
 
     //위도, 경도 저장
     var list : List<Address>? = null

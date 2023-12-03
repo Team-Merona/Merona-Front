@@ -41,7 +41,7 @@ import java.io.UnsupportedEncodingException
 class WritingActivity : AppCompatActivity() {
 //    val writingUrl = "http://3.36.142.103:8080/board/save"
 //    val writingUrl = "http://10.0.2.2:8080/board/save"
-    val writingUrl = "http://192.168.219.104:8080/board/save"
+    val writingUrl = "http://192.168.45.7:8080/board/save"
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
