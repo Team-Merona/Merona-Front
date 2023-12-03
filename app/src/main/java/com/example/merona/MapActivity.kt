@@ -25,7 +25,7 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import kotlinx.android.synthetic.main.activity_map.*
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class  MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //권환 가져오기
     val permission_request = 99

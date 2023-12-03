@@ -58,6 +58,7 @@ class MessageFragment : Fragment() {
 
         private val chatModel = ArrayList<ChatModel>()
         private var uid : String? = null
+        private var boardId : Long? = null
         private val destinationUsers : ArrayList<String> = arrayListOf()
 
         init {

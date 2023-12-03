@@ -16,7 +16,7 @@ import org.json.JSONObject
 class LoginActivity : AppCompatActivity() {
 //    val url = "http://3.36.142.103:8080/user/login"
 //    val url = "http://10.0.2.2:8080/user/login"
-    val url = "http://192.168.219.104:8080/user/login"
+    val url = "http://192.168.45.7:8080/user/login"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

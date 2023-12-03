@@ -39,6 +39,7 @@ import kotlin.collections.ArrayList
 class ChatActivity : AppCompatActivity() {
     private val fireDatabase = FirebaseDatabase.getInstance().reference
     private var chatRoomUid : String? = null
+    private var chatRoomboardId : Long? = null   //게시글마다 채팅창을 새로 만들기 위해 사용
     private var destinationUid : String? = null
     private var boardId : Long? = null
     private var uid : String? = null
@@ -47,8 +48,8 @@ class ChatActivity : AppCompatActivity() {
 
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
 //    private var stateUrl = "http://3.36.142.103:8080/board/list/"
-    val boardDetailUrl = "http://192.168.219.104:8080/board/list/"
-    private var stateUrl = "http://192.168.219.104:8080/board/list/"
+    val boardDetailUrl = "http://192.168.45.7:8080/board/list/"
+    private var stateUrl = "http://192.168.45.7:8080/board/list/"
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +66,7 @@ class ChatActivity : AppCompatActivity() {
 
         destinationUid = intent.getStringExtra("destinationUId")
         boardId = intent.getLongExtra("boardId",0)
+
         //uid = 본인 uid
         //uid = Firebase.auth.currentUser?.uid.toString()
         uid = MyApplication.prefs.getString("email", "")
@@ -144,19 +146,21 @@ class ChatActivity : AppCompatActivity() {
 
         //send 이미지 클릭 시 메세지 보내기
         imageView.setOnClickListener{
-            Log.d("destinationUId","$destinationUid")
-            Log.d("uid", "$uid")
+            Log.d("chatAct_boardId", boardId.toString())
+            Log.d("chatAct_destinationUId","$destinationUid")
+            Log.d("chatAct_uid", "$uid")
 
             val chatModel = ChatModel()
             chatModel.users.put(uid.toString(), true)
             chatModel.users.put(destinationUid!!, true)
-
+            chatModel.boardId.put(boardId.toString(), true)
             val comment = Comment(uid, editText.text.toString(), curTime)
-            if(chatRoomUid == null) {
+            if(chatRoomUid == null && chatRoomboardId == null) {
                 imageView.isEnabled = false
                 fireDatabase.child("chatrooms").push().setValue(chatModel).addOnSuccessListener {
                     //채팅방 생성
                     checkChatRoom()
+
                     //메세지 보내기
                     Handler().postDelayed({
                         println(chatRoomUid)
@@ -188,8 +192,9 @@ class ChatActivity : AppCompatActivity() {
                     for (item in snapshot.children) {
                         println(item)
                         val chatModel = item.getValue<ChatModel>()
-                        if(chatModel?.users!!.containsKey(destinationUid)) {
+                        if(chatModel?.users!!.containsKey(destinationUid) &&chatModel?.boardId!!.containsKey(boardId.toString())) {
                             chatRoomUid = item.key
+                            chatRoomboardId = boardId
                             send_iv.isEnabled = true
                             recyclerView?.layoutManager = LinearLayoutManager(this@ChatActivity)
                             recyclerView?.adapter = RecyclerViewAdpater()
