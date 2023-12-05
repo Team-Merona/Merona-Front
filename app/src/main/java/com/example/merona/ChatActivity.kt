@@ -48,8 +48,8 @@ class ChatActivity : AppCompatActivity() {
 
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
 //    private var stateUrl = "http://3.36.142.103:8080/board/list/"
-    val boardDetailUrl = "http://192.168.45.7:8080/board/list/"
-    private var stateUrl = "http://192.168.45.7:8080/board/list/"
+    val boardDetailUrl = "http://172.30.1.5:8080/board/list/"
+    private var stateUrl = "http://172.30.1.5:8080/board/list/"
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
