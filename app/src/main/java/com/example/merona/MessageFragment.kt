@@ -58,9 +58,8 @@ class MessageFragment : Fragment() {
 
         private val chatModel = ArrayList<ChatModel>()
         private var uid : String? = null
-        private var boardId : Long? = null
         private val destinationUsers : ArrayList<String> = arrayListOf()
-
+        private val boardIdArray : ArrayList<Long> = arrayListOf()
         init {
             uid = MyApplication.prefs.getString("email", "")
             println(uid)
@@ -91,12 +90,19 @@ class MessageFragment : Fragment() {
 
         override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
             var destinationUid: String? = null
+
             //채팅방에 있는 유저 모두 체크
             for (user in chatModel[position].users.keys) {
                 if (!user.equals(uid)) {
                     destinationUid = user
                     destinationUsers.add(destinationUid)
                 }
+            }
+            //boardIdArray에 boardId들을 add시켜야함
+            var boardId : Long? = null
+            for(board in chatModel[position].boardId.keys) {
+                boardId = board.toLong()
+                boardIdArray.add(boardId)
             }
             fireDatabase.child("users").child("$destinationUid").addListenerForSingleValueEvent(object :
                 ValueEventListener {
@@ -112,10 +118,12 @@ class MessageFragment : Fragment() {
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.textView_lastMessage.text = chatModel[position].comments[lastMessageKey]?.message
 
-            //채팅창 선책 시 이동
+            //채팅창 선택 시 이동
+            //클릭 된 채팅창의 destinationUId와 boardId를 넘겨야함
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ChatActivity::class.java)
                 intent.putExtra("destinationUId", destinationUsers[position])
+                 intent.putExtra("boardId", boardIdArray[position])
                 context?.startActivity(intent)
             }
         }
