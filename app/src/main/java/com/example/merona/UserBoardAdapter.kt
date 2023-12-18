@@ -47,6 +47,11 @@ class UserBoardAdapter(val itemList: ArrayList<UserBoardItem>) :
                 holder.btn_state.isEnabled = false
             }
 
+            holder.tv_title.setOnClickListener {
+                val intent = Intent(it.context, DetailActivity::class.java)
+                intent.putExtra("id", itemList[position].id)
+                it.context.startActivity(intent)
+            }
         }
 
         override fun getItemCount():Int{
