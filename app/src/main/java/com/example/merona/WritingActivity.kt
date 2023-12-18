@@ -40,8 +40,8 @@ import java.io.UnsupportedEncodingException
 
 class WritingActivity : AppCompatActivity() {
 //    val writingUrl = "http://3.36.142.103:8080/board/save"
-//    val writingUrl = "http://10.0.2.2:8080/board/save"
-    val writingUrl = "http://172.30.1.5:8080/board/save"
+    val writingUrl = "http://10.0.2.2:8080/board/save"
+//    val writingUrl = "http://172.30.1.5:8080/board/save"
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,6 @@ class WritingActivity : AppCompatActivity() {
             val intent = Intent(this, RoadSearchActivity::class.java)
             startActivity(intent)
         }
-
 
 
             //가입하기 버튼 클릭 시
