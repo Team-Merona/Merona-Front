@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.user
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,17 +8,19 @@ import androidx.appcompat.widget.Toolbar
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.dialog.ConfirmDialog
+import com.example.merona.R
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 
-class RegisterActivity : AppCompatActivity() {
+class UserRegisterActivity : AppCompatActivity() {
 //    val registerUrl = "http://3.36.142.103:8080/user/signup"
 //    val idUrl = "http://3.36.142.103:8080/user/find/"
-//    val registerUrl = "http://10.0.2.2:8080/user/signup"
-//    val idUrl = "http://10.0.2.2:8080/user/find/"
-    val registerUrl = "http://192.168.45.7:8080/user/signup"
-    val idUrl = "http://192.168.45.7:8080/user/find/"
+    val registerUrl = "http://10.0.2.2:8080/user/signup"
+    val idUrl = "http://10.0.2.2:8080/user/find/"
+//    val registerUrl = "http://192.168.45.7:8080/user/signup"
+//    val idUrl = "http://192.168.45.7:8080/user/find/"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

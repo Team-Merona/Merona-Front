@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.chat
 
 import android.content.Context
 import android.content.Intent
@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,10 +21,10 @@ import com.google.firebase.database.ktx.getValue
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MessageFragment : Fragment() {
+class ChatFragment : Fragment() {
     companion object{
-        fun newInstance() : MessageFragment {
-            return MessageFragment()
+        fun newInstance() : ChatFragment {
+            return ChatFragment()
         }
     }
     private val fireDatabase = FirebaseDatabase.getInstance().reference

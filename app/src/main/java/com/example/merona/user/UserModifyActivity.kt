@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,15 +12,15 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.merona.dialog.ConfirmDialog
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import kotlinx.android.synthetic.main.activity_modify.*
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.dialog_check.*
-import kotlinx.android.synthetic.main.fragment_user.*
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
-class ModifyActivity : AppCompatActivity() {
+class UserModifyActivity : AppCompatActivity() {
 //    private val getDataUrl = "http://3.36.142.103:8080/user/info/"
 //    private val idUrl = "http://3.36.142.103:8080/user/find/"
 //    private val modifyUrl = "http://3.36.142.103:8080/user/modify/"
@@ -144,7 +144,7 @@ class ModifyActivity : AppCompatActivity() {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headerMap: MutableMap<String, String> = HashMap()
                         headerMap["Content-Type"] = "application/json"
-                        headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                        headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                         return headerMap
                     }
                 }
@@ -181,7 +181,7 @@ class ModifyActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }

@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
+import com.example.merona.R
 import kotlinx.android.synthetic.main.dialog_check.contentText
 
 class ConfirmDialog(context: Context, text: String) : Dialog(context) {

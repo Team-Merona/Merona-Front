@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.user
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,10 +8,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.merona.R
+import com.example.merona.board.BoardDetailActivity
 
 class UserBoardAdapter(val itemList: ArrayList<UserBoardItem>) :
     RecyclerView.Adapter<UserBoardAdapter.BoardViewHolder>(){
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder{
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_mypage_recyclerview, parent, false)
             return BoardViewHolder(view)
         }
@@ -41,7 +43,7 @@ class UserBoardAdapter(val itemList: ArrayList<UserBoardItem>) :
             }
 
             holder.tv_title.setOnClickListener {
-                val intent = Intent(it.context, DetailActivity::class.java)
+                val intent = Intent(it.context, BoardDetailActivity::class.java)
                 intent.putExtra("id", itemList[position].id)
                 it.context.startActivity(intent)
             }

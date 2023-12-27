@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.board
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -23,6 +23,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import kotlinx.android.synthetic.main.activity_modify.*
 
 import kotlinx.android.synthetic.main.activity_register.*
@@ -35,7 +37,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
-class WritingActivity : AppCompatActivity() {
+class BoardWritingActivity : AppCompatActivity() {
 //    val writingUrl = "http://3.36.142.103:8080/board/save"
     val writingUrl = "http://10.0.2.2:8080/board/save"
 //    val writingUrl = "http://172.30.1.5:8080/board/save"
@@ -107,7 +109,7 @@ class WritingActivity : AppCompatActivity() {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headerMap: MutableMap<String, String> = HashMap()
                     headerMap["Content-Type"] = "application/json"
-                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                     return headerMap
                 }
             }

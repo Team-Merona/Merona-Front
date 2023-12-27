@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".util.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,40 +19,40 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RoadSearchActivity"
+            android:name=".board.RoadSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".board.BoardDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".chat.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ModifyActivity"
+            android:name=".user.UserModifyActivity"
             android:exported="false" />
         <activity
-            android:name=".WritingActivity"
+            android:name=".board.BoardWritingActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".HomeFragment"
+            android:parentActivityName=".home.HomeFragment"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".MapActivity"
+            android:name=".home.MapActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".home.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".user.UserRegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName=".user.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".user.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".home.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

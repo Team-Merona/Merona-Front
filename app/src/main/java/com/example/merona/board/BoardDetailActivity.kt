@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.board
 
 import android.content.Intent
 import android.location.Address
@@ -14,6 +14,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.util.MyApplication
+import com.example.merona.R
+import com.example.merona.chat.ChatActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
@@ -26,7 +29,7 @@ import org.json.JSONObject
 import java.io.IOException
 import java.io.UnsupportedEncodingException
 
-class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
+class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
 //    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
     val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
 //    val boardDetailUrl = "http://172.30.1.5:8080/board/list/"
@@ -59,7 +62,7 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
                 var state = jsonObj.getString("state")
                 email = jsonObj.getString("email")
                 tvName.text = email+"님"
-                if (email==MyApplication.prefs.getString("email","")){
+                if (email== MyApplication.prefs.getString("email","")){
 //                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
 //                    chat_btn.isEnabled = false
                 }
@@ -132,7 +135,7 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }

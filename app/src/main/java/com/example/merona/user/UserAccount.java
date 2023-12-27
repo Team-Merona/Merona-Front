@@ -1,4 +1,4 @@
-package com.example.merona;
+package com.example.merona.user;
 
 //사용자 계정 정보 모델 클래스
 

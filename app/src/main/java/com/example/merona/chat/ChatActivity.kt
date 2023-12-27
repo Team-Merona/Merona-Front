@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.chat
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +13,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.merona.ChatModel.Comment
+import com.example.merona.chat.ChatModel.Comment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -98,7 +100,7 @@ class ChatActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }
@@ -130,7 +132,7 @@ class ChatActivity : AppCompatActivity() {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headerMap: MutableMap<String, String> = HashMap()
                     headerMap["Content-Type"] = "application/json"
-                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                     return headerMap
                 }
             }

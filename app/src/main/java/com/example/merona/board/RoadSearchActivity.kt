@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.board
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.merona.R
 
 class RoadSearchActivity : AppCompatActivity() {
     private var browser: WebView? = null
@@ -44,6 +45,6 @@ class RoadSearchActivity : AppCompatActivity() {
         }
 //        browser!!.loadUrl("http://3.36.142.103:8080/map.html")
 //        browser!!.loadUrl("http://192.168.219.104:8080/map.html")
-        browser!!.loadUrl("http://192.168.45.7:8080/map.html")
+        browser!!.loadUrl("http://10.0.2.2:8080/map.html")
     }
 }

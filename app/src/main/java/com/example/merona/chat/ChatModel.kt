@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.chat
 
 //채팅 메세지를 담을 모델
 //class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
