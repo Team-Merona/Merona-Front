@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
 //    val url = "http://3.36.142.103:8080/user/login"
     val url = "http://10.0.2.2:8080/user/login"
 //    val url = "http://172.30.1.5:8080/user/login"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
