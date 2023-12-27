@@ -6,7 +6,6 @@ import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
@@ -19,12 +18,10 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
-import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import kotlinx.android.synthetic.main.activity_detail.*
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.io.UnsupportedEncodingException
@@ -67,7 +64,7 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
 //                    chat_btn.isEnabled = false
                 }
                 else{
-                    chat_btn.setBackgroundResource(R.drawable.rectangle_button_79d4682)
+                    chat_btn.setBackgroundResource(R.drawable.button_round_79d4682)
                     chat_btn.isEnabled = true
                 }
                 tvTitle.text = title
@@ -103,7 +100,7 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback{
                 }
                 else{
                     state="요청 완료"
-                    requestBtn.setBackgroundResource(R.drawable.solid_button_gray)
+                    requestBtn.setBackgroundResource(R.drawable.button_solid_gray)
                 }
                 requestBtn.text = state
             },

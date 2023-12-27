@@ -3,23 +3,13 @@ package com.example.merona
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
-import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.check_dialog.*
-import org.json.JSONArray
+import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 
 class RegisterActivity : AppCompatActivity() {
@@ -52,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
                         dlgPopup.setCancelable(false)
                         dlgPopup.okBtn.setOnClickListener{ dlgPopup.cancel() }
                         ConfirmId.isEnabled = false
-                        ConfirmId.setBackgroundDrawable(getDrawable(R.drawable.rectangle_check_button))
+                        ConfirmId.setBackgroundDrawable(getDrawable(R.drawable.button_round_check_334c4c4c))
                         addEmail.isEnabled = false
                     }
                     else{
@@ -133,7 +123,7 @@ class RegisterActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.left_arrow)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.img_back)
 
     }
 

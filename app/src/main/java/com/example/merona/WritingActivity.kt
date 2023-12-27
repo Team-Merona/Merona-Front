@@ -2,7 +2,6 @@ package com.example.merona
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.app.PendingIntent.getActivity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -16,9 +15,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import android.widget.Button
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
@@ -30,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_modify.*
 
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_writing.*
-import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.android.synthetic.main.dialog_check.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,7 +54,7 @@ class WritingActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.left_arrow)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.img_back)
 
         inputAddress.text=intent.getStringExtra("data").toString()
         Log.d("Writing Acitivy 데이터~",intent.getStringExtra("data").toString())
@@ -163,8 +160,8 @@ class WritingActivity : AppCompatActivity() {
             addJavascriptInterface(WebViewData(), "MysosoApp")
             webViewClient = client
             webChromeClient = chromeClient
-//            loadUrl("http://10.0.2.2:8080/map.html")
-            loadUrl("http://192.168.219.106:8080/map.html")
+            loadUrl("http://10.0.2.2:8080/map.html")
+//            loadUrl("http://192.168.219.106:8080/map.html")
         }
 
     }

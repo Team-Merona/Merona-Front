@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
-import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.android.synthetic.main.dialog_check.contentText
 
 class ConfirmDialog(context: Context, text: String) : Dialog(context) {
     private val dialog = Dialog(context)
@@ -18,7 +18,7 @@ class ConfirmDialog(context: Context, text: String) : Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.check_dialog)
+        setContentView(R.layout.dialog_check)
 
         // 배경을 투명하게함
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

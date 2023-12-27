@@ -10,7 +10,7 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_modify.*
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {

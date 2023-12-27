@@ -4,10 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentManager
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
@@ -16,14 +12,11 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.merona.databinding.ActivityMainBinding
-import com.example.merona.databinding.ActivityModifyBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_modify.*
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.android.synthetic.main.dialog_check.*
 import kotlinx.android.synthetic.main.fragment_user.*
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
@@ -61,7 +54,7 @@ class ModifyActivity : AppCompatActivity() {
                         dlgPopup.setCancelable(false)
                         dlgPopup.okBtn.setOnClickListener{ dlgPopup.cancel() }
                         ConfirmId2.isEnabled = false
-                        ConfirmId2.setBackgroundDrawable(getDrawable(R.drawable.rectangle_check_button))
+                        ConfirmId2.setBackgroundDrawable(getDrawable(R.drawable.button_round_check_334c4c4c))
                         ModifyEmail.isEnabled = false
                     }
                     else{

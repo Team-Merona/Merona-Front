@@ -38,7 +38,7 @@
             android:layout_marginTop="10dp"
             android:text="심부름 수락하기"
             android:textColor="@color/white"
-            android:background="@drawable/solid_button_44be2d"/>
+            android:background="@drawable/button_solid_44be2d"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +47,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/bg_round"
+        android:background="@drawable/bg_top_round_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginEnd="55dp"
             android:layout_marginRight="55dp"
-            android:background="@drawable/bg_content_et"
+            android:background="@drawable/bg_round_white"
             android:fontFamily="@font/maple_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
             android:id="@+id/send_iv"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/send"
+            android:src="@drawable/ic_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.981"

@@ -19,7 +19,7 @@
         android:id="@+id/logo"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/img_logo"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="80dp"/>
 
@@ -39,7 +39,7 @@
         android:layout_marginLeft="280dp"
         android:layout_marginTop="90dp"
         android:background="#00FF0000"
-        android:drawableBottom="@drawable/ic_create" />
+        android:drawableBottom="@drawable/ic_write" />
 
 
     <TextView
@@ -56,7 +56,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:src="@drawable/rectangle_button_79d468"
+        android:src="@drawable/button_round_79d468"
         android:layout_marginTop="170dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>

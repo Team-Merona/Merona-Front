@@ -4,7 +4,7 @@
     android:layout_height="70dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@drawable/rect_list">
+    android:background="@drawable/bg_list_stroke_gray">
 
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/solid_button"
+        android:background="@drawable/button_solid_803db825"
         android:textSize="17sp"
         android:textColor="@color/white"
         android:fontFamily="@font/maple_regular"
