@@ -1,25 +1,16 @@
-package com.example.merona
+package com.example.merona.home
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.UiThread
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
 import com.android.volley.Request
@@ -27,18 +18,17 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.util.MyApplication
+import com.example.merona.R
+import com.example.merona.board.BoardItem
+import com.example.merona.board.BoardDetailActivity
 import com.google.android.gms.location.*
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_detail.*
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.UnsupportedEncodingException
-import kotlin.contracts.contract
 
 
 private const val ARG_PARAM1 = "param1"
@@ -138,7 +128,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     marker.apply {
                         setOnClickListener {
 
-                            val intent = Intent(requireActivity(), DetailActivity::class.java)
+                            val intent = Intent(requireActivity(), BoardDetailActivity::class.java)
                             intent.putExtra("id", boardId)
                             Log.d("HomeFragment-boardId", id.toString())
                             startActivity(intent)
@@ -173,7 +163,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }

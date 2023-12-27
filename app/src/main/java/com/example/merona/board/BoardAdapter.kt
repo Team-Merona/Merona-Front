@@ -1,19 +1,16 @@
-package com.example.merona
+package com.example.merona.board
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.merona.R
 
 class BoardAdapter(val itemList: ArrayList<BoardItem>) :
     RecyclerView.Adapter<BoardAdapter.BoardViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_board_recyclerview, parent, false)
         return BoardViewHolder(view)
     }
@@ -24,7 +21,7 @@ class BoardAdapter(val itemList: ArrayList<BoardItem>) :
         holder.tv_cost.text= itemList[position].cost
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(it.context, DetailActivity::class.java)
+            val intent = Intent(it.context, BoardDetailActivity::class.java)
             intent.putExtra("id", itemList[position].id)
             it.context.startActivity(intent)
         }

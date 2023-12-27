@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,23 +7,26 @@ import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.dialog.ConfirmDialog
+import com.example.merona.home.MainActivity
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_modify.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.check_dialog.*
+import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 //    val url = "http://3.36.142.103:8080/user/login"
     val url = "http://10.0.2.2:8080/user/login"
 //    val url = "http://172.30.1.5:8080/user/login"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         //회원 가입 버튼 클릭 시 화면 전환
         move_btn.setOnClickListener{
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, UserRegisterActivity::class.java)
             startActivity(intent)
         }
 

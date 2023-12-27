@@ -1,7 +1,6 @@
-package com.example.merona
+package com.example.merona.chat
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,22 +12,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.merona.ChatModel.Comment
+import com.example.merona.chat.ChatModel.Comment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.merona.ChatModel
-import com.google.firebase.auth.ktx.auth
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.json.JSONObject
@@ -82,11 +79,11 @@ class ChatActivity : AppCompatActivity() {
                 val id = jsonObj.getLong("id")
                 var state = jsonObj.getString("state")
                 if (state=="REQUEST_WAITING"){
-                    ongoingBtn.setBackgroundResource(R.drawable.solid_button_44be2d)
+                    ongoingBtn.setBackgroundResource(R.drawable.button_solid_44be2d)
                     ongoingBtn.isEnabled = true
                 }
                 else{
-                    ongoingBtn.setBackgroundResource(R.drawable.rectangle_button)
+                    ongoingBtn.setBackgroundResource(R.drawable.button_round_gray)
                     ongoingBtn.isEnabled = false
                 }
             },
@@ -103,7 +100,7 @@ class ChatActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }
@@ -119,7 +116,7 @@ class ChatActivity : AppCompatActivity() {
                 "$stateUrl$boardId/ongoing",
                 Response.Listener<String>{ response ->
                     Log.d("응답!",response)
-                    ongoingBtn.setBackgroundResource(R.drawable.rectangle_button)
+                    ongoingBtn.setBackgroundResource(R.drawable.button_round_gray)
                     ongoingBtn.isEnabled = false
                 },
                 {
@@ -135,7 +132,7 @@ class ChatActivity : AppCompatActivity() {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headerMap: MutableMap<String, String> = HashMap()
                     headerMap["Content-Type"] = "application/json"
-                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                     return headerMap
                 }
             }
@@ -251,12 +248,12 @@ class ChatActivity : AppCompatActivity() {
             //본인 채팅일 경우
             Log.d("리사이클러뷰 comments posiotion",comments[position].uid.toString())
             if(comments[position].uid.equals(uid)) {
-                holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
+                holder.textView_message.setBackgroundResource(R.drawable.img_msg_right)
                 holder.layout_destination.visibility = View.INVISIBLE
                 holder.layout_main.gravity = Gravity.RIGHT
             } else { //상대방 채팅
                 holder.layout_destination.visibility = View.VISIBLE
-                holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
+                holder.textView_message.setBackgroundResource(R.drawable.img_msg_left)
                 holder.layout_main.gravity = Gravity.LEFT
             }
         }

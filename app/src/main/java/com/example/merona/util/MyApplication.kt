@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.util
 
 import android.app.Application
 

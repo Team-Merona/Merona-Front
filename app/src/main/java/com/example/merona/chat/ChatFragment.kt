@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.chat
 
 import android.content.Context
 import android.content.Intent
@@ -11,20 +11,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.ktx.auth
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MessageFragment : Fragment() {
+class ChatFragment : Fragment() {
     companion object{
-        fun newInstance() : MessageFragment {
-            return MessageFragment()
+        fun newInstance() : ChatFragment {
+            return ChatFragment()
         }
     }
     private val fireDatabase = FirebaseDatabase.getInstance().reference
@@ -80,7 +80,7 @@ class MessageFragment : Fragment() {
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
-            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_message, parent, false))
+            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_message_recyclerview, parent, false))
         }
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,13 +1,9 @@
-package com.example.merona
+package com.example.merona.user
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentManager
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
@@ -16,24 +12,21 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.merona.databinding.ActivityMainBinding
-import com.example.merona.databinding.ActivityModifyBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.merona.dialog.ConfirmDialog
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import kotlinx.android.synthetic.main.activity_modify.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.check_dialog.*
-import kotlinx.android.synthetic.main.fragment_user.*
-import org.json.JSONArray
+import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 
-class ModifyActivity : AppCompatActivity() {
+class UserModifyActivity : AppCompatActivity() {
 //    private val getDataUrl = "http://3.36.142.103:8080/user/info/"
 //    private val idUrl = "http://3.36.142.103:8080/user/find/"
 //    private val modifyUrl = "http://3.36.142.103:8080/user/modify/"
-    private val getDataUrl = "http://192.168.80.1:8080/user/info/"
-    private val idUrl = "http://192.168.45.7:8080/user/find/"
-    private val modifyUrl = "http://192.168.45.7:8080/user/modify/"
+    private val getDataUrl = "http://10.0.2.2:8080/user/info/"
+    private val idUrl = "http://10.0.2.2:8080/user/find/"
+    private val modifyUrl = "http://10.0.2.2:8080/user/modify/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +54,7 @@ class ModifyActivity : AppCompatActivity() {
                         dlgPopup.setCancelable(false)
                         dlgPopup.okBtn.setOnClickListener{ dlgPopup.cancel() }
                         ConfirmId2.isEnabled = false
-                        ConfirmId2.setBackgroundDrawable(getDrawable(R.drawable.rectangle_check_button))
+                        ConfirmId2.setBackgroundDrawable(getDrawable(R.drawable.button_round_check_334c4c4c))
                         ModifyEmail.isEnabled = false
                     }
                     else{
@@ -151,7 +144,7 @@ class ModifyActivity : AppCompatActivity() {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headerMap: MutableMap<String, String> = HashMap()
                         headerMap["Content-Type"] = "application/json"
-                        headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                        headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                         return headerMap
                     }
                 }
@@ -188,7 +181,7 @@ class ModifyActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }

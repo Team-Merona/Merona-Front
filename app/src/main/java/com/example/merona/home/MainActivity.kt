@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,13 +12,15 @@ import android.view.View
 import androidx.annotation.UiThread
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.merona.R
+import com.example.merona.board.BoardListFragment
+import com.example.merona.board.BoardWritingActivity
+import com.example.merona.chat.ChatFragment
 import com.example.merona.databinding.ActivityMainBinding
+import com.example.merona.user.UserFragment
 import com.google.android.gms.location.*
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //btn_addBoard 버튼 클릭 시 게시글 추가 화면 라우팅
         btn_addBoard.setOnClickListener{
-            val intent = Intent(this, WritingActivity::class.java)
+            val intent = Intent(this, BoardWritingActivity::class.java)
             intent.putExtra("data","")
             startActivity(intent)
         }
@@ -71,8 +73,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.bottomNavigationview.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.home -> setFragment(TAG_HOME, HomeFragment())
-                R.id.list -> setFragment(TAG_LIST, ListFragment())
-                R.id.message -> setFragment(TAG_MESSAGE, MessageFragment())
+                R.id.list -> setFragment(TAG_LIST, BoardListFragment())
+                R.id.message -> setFragment(TAG_MESSAGE, ChatFragment())
                 R.id.user -> setFragment(TAG_USER, UserFragment())
             }
             true

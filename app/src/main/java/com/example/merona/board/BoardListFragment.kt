@@ -1,4 +1,4 @@
-package com.example.merona
+package com.example.merona.board
 
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
@@ -21,11 +21,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.util.MyApplication
+import com.example.merona.R
 import org.json.JSONArray
 import java.io.UnsupportedEncodingException
 
 
-class ListFragment : Fragment() {
+class BoardListFragment : Fragment() {
 
 //    private var boardlistUrl = "http://3.36.142.103:8080/board/list"
     private var boardlistUrl = "http://10.0.2.2:8080/board/list"
@@ -106,7 +108,7 @@ class ListFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headerMap: MutableMap<String, String> = HashMap()
                 headerMap["Content-Type"] = "application/json"
-                headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                 return headerMap
             }
         }
@@ -189,7 +191,7 @@ class ListFragment : Fragment() {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headerMap: MutableMap<String, String> = HashMap()
                     headerMap["Content-Type"] = "application/json"
-                    headerMap["Authorization"] = "Bearer "+MyApplication.prefs.getString("accessToken","")
+                    headerMap["Authorization"] = "Bearer "+ MyApplication.prefs.getString("accessToken","")
                     return headerMap
                 }
             }
