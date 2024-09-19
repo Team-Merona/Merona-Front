@@ -64,7 +64,13 @@ class UserRegisterActivity : AppCompatActivity() {
 
         //가입하기 버튼
         binding.registerBtn.setOnClickListener {
-            if (binding.idCheckBtn.isEnabled) {
+            if (binding.email.text.toString().isEmpty() ||
+                binding.password.text.toString().isEmpty() ||
+                binding.name.text.toString().isEmpty() ||
+                binding.phone.text.toString().isEmpty()
+            ) {
+                ConfirmDialog(this, getString(R.string.error_register_empty)).createDialog()
+            } else if (binding.idCheckBtn.isEnabled) {
                 ConfirmDialog(this, getString(R.string.error_check_email)).createDialog()
             } else if (binding.password.text.toString() != binding.passwordCheck.text.toString()) {
                 ConfirmDialog(this, getString(R.string.error_register_password)).createDialog()
