@@ -3,7 +3,6 @@ package com.example.merona.user
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -54,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 },
                 Response.ErrorListener {
                     Log.d("로그인 실패", it.toString())
-                    createDialog(getString(R.string.error_login))
+                    ConfirmDialog(this,getString(R.string.error_login)).createDialog()
                 }) {
 
                 override fun getBody(): ByteArray {
@@ -72,14 +71,6 @@ class LoginActivity : AppCompatActivity() {
             }
             val queue = Volley.newRequestQueue(this)
             queue.add(stringRequest)
-        }
-    }
-
-    private fun createDialog(message: String) {
-        val dialogPopup = ConfirmDialog(this, message)
-        dialogPopup.setOkPopup()
-        dialogPopup.findViewById<Button>(R.id.okBtn).setOnClickListener {
-            dialogPopup.cancel()
         }
     }
 }
