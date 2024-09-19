@@ -13,6 +13,7 @@ import com.example.merona.databinding.ActivityLoginBinding
 import com.example.merona.dialog.ConfirmDialog
 import com.example.merona.home.MainActivity
 import com.example.merona.util.MyApplication
+import com.google.gson.Gson
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
@@ -43,8 +44,8 @@ class LoginActivity : AppCompatActivity() {
                 getString(R.string.prefix_uri) + uri,
                 Response.Listener {
                     Log.d("로그인 성공", binding.emailAddress.text.toString())
-                    var strResp = it.toString()
-                    val jsonObj: JSONObject = JSONObject(strResp)
+                    val strResp = it.toString()
+                    val jsonObj = JSONObject(strResp)
                     val accessToken = jsonObj.getString("accessToken")
                     MyApplication.prefs.setString("accessToken", accessToken)
                     MyApplication.prefs.setString("email", binding.emailAddress.text.toString())
@@ -57,13 +58,15 @@ class LoginActivity : AppCompatActivity() {
                 }) {
 
                 override fun getBody(): ByteArray {
-                    val json = JSONObject()
-                    json.put("email", binding.emailAddress.text.toString())
-                    json.put("password", binding.password.text.toString())
+                    val loginRequest = LoginRequest(
+                        binding.emailAddress.text.toString(),
+                        binding.password.text.toString()
+                    )
+                    val json = Gson().toJson(loginRequest)
                     return json.toString().toByteArray()
                 }
 
-                override fun getBodyContentType(): String? {
+                override fun getBodyContentType(): String {
                     return "application/json; charset=utf-8"
                 }
             }
