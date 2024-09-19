@@ -29,4 +29,10 @@ class ConfirmDialog(context: Context, text: String) : Dialog(context) {
         window!!.attributes.y = 500
         window!!.attributes.gravity = Gravity.TOP + Gravity.CENTER_HORIZONTAL
     }
+
+    fun setOkPopup() {
+        this.show()
+        this.window!!.setLayout(800, 450)
+        this.setCancelable(false)
+    }
 }

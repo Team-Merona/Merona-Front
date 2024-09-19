@@ -1,61 +1,65 @@
 package com.example.merona.user
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.merona.R
+import com.example.merona.databinding.ActivityLoginBinding
 import com.example.merona.dialog.ConfirmDialog
 import com.example.merona.home.MainActivity
 import com.example.merona.util.MyApplication
-import com.example.merona.R
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.dialog_check.*
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
-//    val url = "http://3.36.142.103:8080/user/login"
-    val url = "http://10.0.2.2:8080/user/login"
-//    val url = "http://172.30.1.5:8080/user/login"
+    private var mBinding: ActivityLoginBinding? = null
+    private val binding get() = mBinding!!
+
+    private val uri = "/user/login"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        mBinding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //회원 가입 버튼 클릭 시 화면 전환
-        move_btn.setOnClickListener{
+        setClickListener()
+    }
+
+    private fun setClickListener() {
+        //회원 가입 버튼
+        binding.registerBtn.setOnClickListener {
             val intent = Intent(this, UserRegisterActivity::class.java)
             startActivity(intent)
         }
 
-        //로그인 버튼 클릭 시 지도 화면 전환
-        login_btn.setOnClickListener{
+        //로그인 버튼 클릭
+        binding.loginBtn.setOnClickListener {
             val stringRequest: StringRequest = object : StringRequest(
-                Method.POST, url,
+                Method.POST,
+                getString(R.string.prefix_uri) + uri,
                 Response.Listener {
-                    Log.d("로그인 성공", editTextEmailAddress.text.toString())
+                    Log.d("로그인 성공", binding.emailAddress.text.toString())
                     var strResp = it.toString()
                     val jsonObj: JSONObject = JSONObject(strResp)
                     val accessToken = jsonObj.getString("accessToken")
                     MyApplication.prefs.setString("accessToken", accessToken)
-                    MyApplication.prefs.setString("email", editTextEmailAddress.text.toString())
+                    MyApplication.prefs.setString("email", binding.emailAddress.text.toString())
                     val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)},
+                    startActivity(intent)
+                },
                 Response.ErrorListener {
                     Log.d("로그인 실패", it.toString())
-                    val dlgPopup = ConfirmDialog(this,"로그인에 실패하였습니다.")
-                    dlgPopup.show()
-                    dlgPopup.window!!.setLayout(800,450)
-                    dlgPopup.setCancelable(false)
-                    dlgPopup.okBtn.setOnClickListener{ dlgPopup.cancel() }
+                    createDialog(getString(R.string.error_login))
                 }) {
 
                 override fun getBody(): ByteArray {
                     val json = JSONObject()
-                    json.put("email", ""+editTextEmailAddress.text.toString())
-                    json.put("password", ""+editTextPassword.text.toString())
+                    json.put("email", binding.emailAddress.text.toString())
+                    json.put("password", binding.password.text.toString())
                     return json.toString().toByteArray()
                 }
 
@@ -63,9 +67,16 @@ class LoginActivity : AppCompatActivity() {
                     return "application/json; charset=utf-8"
                 }
             }
-
             val queue = Volley.newRequestQueue(this)
             queue.add(stringRequest)
+        }
+    }
+
+    private fun createDialog(message: String) {
+        val dialogPopup = ConfirmDialog(this, message)
+        dialogPopup.setOkPopup()
+        dialogPopup.findViewById<Button>(R.id.okBtn).setOnClickListener {
+            dialogPopup.cancel()
         }
     }
 }
