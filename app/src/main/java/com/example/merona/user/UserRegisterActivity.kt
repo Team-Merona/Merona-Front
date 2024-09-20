@@ -64,23 +64,26 @@ class UserRegisterActivity : AppCompatActivity() {
 
         //가입하기 버튼
         binding.registerBtn.setOnClickListener {
-            if (binding.email.text.toString().isEmpty() ||
-                binding.password.text.toString().isEmpty() ||
-                binding.name.text.toString().isEmpty() ||
-                binding.phone.text.toString().isEmpty()
-            ) {
+            val registerRequest = UserInfoRequest(
+                binding.email.text.toString(),
+                binding.password.text.toString(),
+                binding.name.text.toString(),
+                binding.phone.text.toString()
+            )
+
+            if (registerRequest.isEmptyValue()) {
                 ConfirmDialog(this, getString(R.string.error_register_empty)).createDialog()
             } else if (binding.idCheckBtn.isEnabled) {
-                ConfirmDialog(this, getString(R.string.error_check_email)).createDialog()
-            } else if (binding.password.text.toString() != binding.passwordCheck.text.toString()) {
-                ConfirmDialog(this, getString(R.string.error_register_password)).createDialog()
+                ConfirmDialog(this, getString(R.string.error_user_eamil)).createDialog()
+            } else if (!registerRequest.checkPassword(binding.passwordCheck.text.toString())) {
+                ConfirmDialog(this, getString(R.string.error_user_password)).createDialog()
             } else {
                 // 회원 정보 보내기
                 val stringRequest: StringRequest = object : StringRequest(
                     Method.POST,
                     getString(R.string.prefix_uri) + registerUrl,
                     Response.Listener {
-                        Log.d("회원가입 완료", binding.email.text.toString())
+                        Log.d("회원가입 완료", registerRequest.email!!)
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     },
@@ -90,12 +93,6 @@ class UserRegisterActivity : AppCompatActivity() {
                     }) {
 
                     override fun getBody(): ByteArray {
-                        val registerRequest = UserInfoRequest(
-                            binding.email.text.toString(),
-                            binding.password.text.toString(),
-                            binding.name.text.toString(),
-                            binding.phone.text.toString()
-                        )
                         val json = Gson().toJson(registerRequest)
                         return json.toString().toByteArray()
                     }
