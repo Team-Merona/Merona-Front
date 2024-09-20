@@ -8,23 +8,23 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/back_user"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
         android:theme="?android:attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/text_modify"
-        android:layout_width="84dp"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginTop="8dp"
-        android:layout_gravity="center"
-        android:text="수정하기"
         android:fontFamily="@font/maple_bold"
+        android:text="회원 정보 수정"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,29 +34,48 @@
         app:layout_constraintVertical_bias="0.011" />
 
 
-    <ScrollView
-        android:layout_width="414dp"
-        android:layout_height="512dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/modify_btn"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/button_round_79d4682"
+        android:fontFamily="@font/maple_bold"
+        android:hint="수정하기"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.93" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="512dp"
+        app:layout_constraintBottom_toTopOf="@+id/modify_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintTop_toBottomOf="@+id/back_user"
+        app:layout_constraintVertical_bias="0.32999998">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textModifyId"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewId"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"
-                android:text="아이디"
                 android:fontFamily="@font/maple_regular"
+                android:text="아이디"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,17 +90,17 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/ModifyEmail"
-                    android:layout_width="210dp"
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
                     android:layout_height="43dp"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_round_gray"
+                    android:fontFamily="@font/maple_regular"
                     android:gravity="center_vertical"
                     android:hint="입력하세요"
-                    android:fontFamily="@font/maple_regular"
                     android:inputType="textEmailAddress"
-                    android:paddingLeft="15dp"
+                    android:paddingLeft="20dp"
                     android:textColorHint="#B2B2B2"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -92,14 +111,15 @@
                     app:layout_constraintVertical_bias="0.161" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ConfirmId2"
-                    android:layout_width="80dp"
+                    android:id="@+id/id_check_btn"
+                    android:layout_width="match_parent"
                     android:layout_height="43dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="3"
                     android:background="@drawable/button_round_79d4682"
-                    android:hint="중복확인"
                     android:fontFamily="@font/maple_regular"
+                    android:hint="중복확인"
                     android:textColorHint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -108,13 +128,12 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textModifyPassword"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="35dp"
-                android:text="비밀번호"
                 android:fontFamily="@font/maple_regular"
+                android:text="비밀번호"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -122,15 +141,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/ModifyPw"
-                android:layout_width="300dp"
+                android:id="@+id/password"
+                android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_round_gray"
+                android:fontFamily="@font/maple_regular"
                 android:gravity="center_vertical"
                 android:hint="입력하세요"
-                android:fontFamily="@font/maple_regular"
                 android:inputType="textPassword"
                 android:paddingLeft="20dp"
                 android:textColorHint="#B2B2B2"
@@ -143,15 +161,14 @@
                 app:layout_constraintVertical_bias="0.313" />
 
             <TextView
-                android:id="@+id/textModifyConfirmPassword"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewConfirmPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="35dp"
                 android:ems="10"
+                android:fontFamily="@font/maple_regular"
                 android:inputType="number"
                 android:text="비밀번호 재입력"
-                android:fontFamily="@font/maple_regular"
                 android:textColorHint="#B2B2B2"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -160,15 +177,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/ModifyConfirmPassword"
-                android:layout_width="300dp"
+                android:id="@+id/password_check"
+                android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_round_gray"
+                android:fontFamily="@font/maple_regular"
                 android:gravity="center_vertical"
                 android:hint="입력하세요"
-                android:fontFamily="@font/maple_regular"
                 android:inputType="textPassword"
                 android:paddingLeft="20dp"
                 android:textColorHint="#B2B2B2"
@@ -181,13 +197,12 @@
                 app:layout_constraintVertical_bias="0.468" />
 
             <TextView
-                android:id="@+id/textModifyName"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="35dp"
-                android:text="이름"
                 android:fontFamily="@font/maple_regular"
+                android:text="이름"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,15 +210,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/ModifyName"
-                android:layout_width="300dp"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_round_gray"
+                android:fontFamily="@font/maple_regular"
                 android:gravity="center_vertical"
                 android:hint="입력하세요"
-                android:fontFamily="@font/maple_regular"
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
                 android:textColorHint="#B2B2B2"
@@ -212,26 +226,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </LinearLayout>
     </ScrollView>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ModifyButton"
-        android:layout_width="310dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_round_79d4682"
-        android:fontFamily="@font/maple_bold"
-        android:hint="수정완료"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

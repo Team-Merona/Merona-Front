@@ -25,7 +25,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.merona.util.MyApplication
 import com.example.merona.R
-import kotlinx.android.synthetic.main.activity_modify.*
+import kotlinx.android.synthetic.main.activity_user_modify.*
 
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_writing.*
