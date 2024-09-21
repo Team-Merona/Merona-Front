@@ -3,7 +3,9 @@ package com.example.merona.user
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -14,6 +16,7 @@ import com.example.merona.dialog.ConfirmDialog
 import com.example.merona.util.MyApplication
 import com.google.gson.Gson
 import org.json.JSONObject
+
 
 class UserModifyActivity : AppCompatActivity() {
     private val getDataUrl = "/user/info/"
@@ -157,5 +160,22 @@ class UserModifyActivity : AppCompatActivity() {
 
     private fun setScreen() {
         binding.idCheckBtn.isEnabled = true
+
+        //뒤로가기 버튼
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.img_back)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
