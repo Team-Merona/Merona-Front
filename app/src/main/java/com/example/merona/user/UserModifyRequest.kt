@@ -1,13 +1,12 @@
 package com.example.merona.user
 
-data class UserInfoRequest(
+data class UserModifyRequest(
     var email: String? = null,
     var password: String? = null,
-    var name : String? = null,
-    var phoneNumber : String? = null
+    var name: String? = null
 ) {
     fun isEmptyValue(): Boolean {
-        if (email!!.isEmpty() || password!!.isEmpty() || name!!.isEmpty() || phoneNumber!!.isEmpty()) {
+        if (email!!.isEmpty() || password!!.isEmpty() || name!!.isEmpty()) {
             return true
         }
         return false
