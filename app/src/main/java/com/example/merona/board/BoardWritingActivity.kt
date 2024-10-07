@@ -25,6 +25,8 @@ import com.android.volley.toolbox.Volley
 import com.example.merona.R
 import com.example.merona.util.MyApplication
 import com.example.merona.databinding.ActivityWritingBinding
+import kotlinx.android.synthetic.main.activity_user_modify.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_writing.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
