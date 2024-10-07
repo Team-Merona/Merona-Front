@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".board.BoardWritingActivity">
-
+    tools:context=".board.BoardModifyActivity">
 
     <WebView
         android:id="@+id/webView"
@@ -22,7 +21,7 @@
         android:id="@+id/Writting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="심부름 요청"
+        android:text="심부름 수정"
         android:fontFamily="@font/maple_bold"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -193,11 +192,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/PostButton"
+        android:id="@+id/modifyButton"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:background="@drawable/button_round_79d468"
-        android:hint="요청하기"
+        android:hint="수정하기"
         android:fontFamily="@font/maple_regular"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
@@ -257,4 +256,5 @@
         app:layout_constraintStart_toEndOf="@+id/tv_price"
         app:layout_constraintTop_toBottomOf="@+id/price"
         app:layout_constraintVertical_bias="0.005" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

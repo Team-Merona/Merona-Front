@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".board.BoardModifyActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.RoadSearchActivity"
             android:exported="false" />
         <activity
@@ -33,9 +36,9 @@
         <activity
             android:name=".board.BoardWritingActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".home.HomeFragment"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".home.MapActivity"
             android:exported="false" />
@@ -45,9 +48,9 @@
         <activity
             android:name=".user.UserRegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".user.LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".user.LoginActivity"
             android:exported="false" />
@@ -69,7 +72,7 @@
             android:value="cta5vodl7s" />
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="	d89b7cfd985cbf3288b6e904ae6fba31" />
+            android:value=" d89b7cfd985cbf3288b6e904ae6fba31" />
     </application>
 
 </manifest>

@@ -1,15 +1,14 @@
 package com.example.merona.board
 
 import android.content.Intent
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.StringRequest
@@ -17,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.example.merona.util.MyApplication
 import com.example.merona.R
 import com.example.merona.chat.ChatActivity
+import com.example.merona.databinding.ActivityDetailBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.CameraUpdate
@@ -24,17 +24,15 @@ import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
-import kotlinx.android.synthetic.main.activity_detail.*
 import org.json.JSONObject
 import java.io.IOException
 import java.io.UnsupportedEncodingException
 
 class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
-//    val boardDetailUrl = "http://3.36.142.103:8080/board/list/"
+    private var mBinding : ActivityDetailBinding? = null
+    private val binding get() = mBinding!!
     val boardDetailUrl = "http://10.0.2.2:8080/board/list/"
-//    val boardDetailUrl = "http://172.30.1.5:8080/board/list/"
-
-    var email : String? = null //게시글 작성자의 ID
+    var email : String? = null
 
     //지오코딩
     private lateinit var naverMap: NaverMap
@@ -43,41 +41,56 @@ class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        mBinding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         boardId = intent.getLongExtra("id",0)
 
+        setupClickListener()
+        setupBoardDetailListener()
+    }
+    private fun setupClickListener() {
+        binding.chatBtn.setOnClickListener {
+            if(email == MyApplication.prefs.getString("email", "")) {
+                val intent = Intent(this, BoardModifyActivity::class.java)
+                intent.putExtra("boardId", boardId)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, ChatActivity::class.java)
+                intent.putExtra("destinationUId", email) //작성자ID
+                intent.putExtra("boardId", boardId)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun setupBoardDetailListener() {
         val request=object: StringRequest(
-            Request.Method.GET,
+            Method.GET,
             boardDetailUrl+boardId.toString(),
-            Response.Listener<String>{ response ->
-                Log.d("응답!",response)
+            Response.Listener { response ->
                 var strResp = response.toString()
-                val jsonObj: JSONObject = JSONObject(strResp)
+                val jsonObj = JSONObject(strResp)
                 val id = jsonObj.getLong("id")
                 val title = jsonObj.getString("title")
                 val contents = jsonObj.getString("contents")
                 val addressJsonObject = jsonObj.getJSONObject("address")
                 val address = addressJsonObject.getString("streetAddress")
+                val detail = addressJsonObject.getString("detailAddress")
                 val cost = jsonObj.getString("cost")
                 var state = jsonObj.getString("state")
                 email = jsonObj.getString("email")
-                tvName.text = email+"님"
+                binding.tvName.text = email+"님"
                 if (email== MyApplication.prefs.getString("email","")){
-//                    chat_btn.setBackgroundResource(R.drawable.rectangle_button)
-//                    chat_btn.isEnabled = false
+                    binding.chatBtn.text = "수정하기"
                 }
-                else{
-                    chat_btn.setBackgroundResource(R.drawable.button_round_79d4682)
-                    chat_btn.isEnabled = true
-                }
-                tvTitle.text = title
-                tvContents.text = contents
-                tvCost.text = cost.toString()+"원"
+                binding.tvTitle.text = title
+                binding.tvContents.text = contents
+                binding.tvCost.text = cost.toString()+"원"
 
                 //Geocoder 사용 : 주소 -> 위도, 경도로 변환
-                addressText.text = address.toString()
-                val geocoder : Geocoder = Geocoder(this)
+                binding.addressText.text = address.toString() + "\n" + detail.toString()
+                val geocoder = Geocoder(this)
                 val str = address.toString()
 
                 try {
@@ -86,14 +99,13 @@ class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
 
                 if(list != null) {
                     if(list!!.isEmpty()) {
-                        addressText.text = "존재하지 않는 주소입니다."
+                        binding.addressText.text = "존재하지 않는 주소입니다."
                     }
                     else {
                         val fm = supportFragmentManager
                         val mapFragment = fm.findFragmentById(R.id.detail_map) as MapFragment
                         mapFragment.getMapAsync(this)
                     }
-
                 }
 
                 if (state=="REQUEST_WAITING"){
@@ -104,9 +116,12 @@ class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
                 }
                 else{
                     state="요청 완료"
-                    requestBtn.setBackgroundResource(R.drawable.button_solid_gray)
+                    binding.requestBtn.setBackgroundResource(R.drawable.button_round_gray)
+                    binding.requestBtn.isEnabled = false
+                    binding.requestBtn.setTextColor(Color.DKGRAY)
                 }
-                requestBtn.text = state
+                binding.requestBtn.text = state
+
             },
             {
                 Log.d("에러!","x..")
@@ -119,14 +134,11 @@ class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
                     val utf8String = String(response.data, Charsets.UTF_8)
                     Response.success(utf8String, HttpHeaderParser.parseCacheHeaders(response))
                 } catch (e: UnsupportedEncodingException) {
-                    // log error
                     Response.error(ParseError(e))
                 } catch (e: Exception) {
-                    // log error
                     Response.error(ParseError(e))
                 }
             }
-
 
             override fun getParams():MutableMap<String,String>{
                 val params=HashMap<String,String>()
@@ -143,18 +155,8 @@ class BoardDetailActivity : AppCompatActivity(), OnMapReadyCallback{
 
         val queue = Volley.newRequestQueue(this)
         queue.add(request)
-
-        //채팅하기 버튼 클릭 시 채팅
-        val chatBtn : AppCompatButton = findViewById(R.id.chat_btn)
-        chatBtn.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            //destinationUId에 게시글 작성자의 ID를 넣음
-            intent.putExtra("destinationUId", email)
-            intent.putExtra("boardId", boardId)
-            startActivity(intent)
-        }
-
     }
+
     //장소로 이동 + 마커 표시
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
