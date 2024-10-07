@@ -112,6 +112,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 Log.d("itemList size", itemList.size.toString())
 
                 for(i in 0 until itemList.size) {
+                    Log.d("geocoder", "geocoder")
                     val geocoder : Geocoder = Geocoder(requireContext())
                     val str = itemList[i].address
                     try {
